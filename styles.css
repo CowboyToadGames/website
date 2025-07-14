@@ -133,7 +133,7 @@ body {
     justify-content: center;
     align-items: center;
     padding: 80px calc(var(--spacing) * 2) calc(var(--spacing) * 2);
-    background: linear-gradient(rgba(26, 26, 26, 0.6), rgba(26, 26, 26, 0.6)), url('/images/herobg.png') center/cover;
+    background: linear-gradient(rgba(26, 26, 26, 0.6), rgba(26, 26, 26, 0.6)), url('images/herobg.png') center/cover;
     position: relative;
 }
 

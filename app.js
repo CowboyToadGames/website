@@ -27,9 +27,9 @@ class CowboyToadWebsite {
 
         try {
             const [news, faq, policies] = await Promise.all([
-                this.fetchJSON('/data/news.json'),
-                this.fetchJSON('/data/faq.json'),
-                this.fetchJSON('/data/policies.json'),
+                this.fetchJSON('data/news.json'),
+                this.fetchJSON('data/faq.json'),
+                this.fetchJSON('data/policies.json'),
             ]);
             this.content = { news, faq, policies };
         } catch (error) {
