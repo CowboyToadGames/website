@@ -133,7 +133,7 @@ body {
     justify-content: center;
     align-items: center;
     padding: 80px calc(var(--spacing) * 2) calc(var(--spacing) * 2);
-    background: linear-gradient(rgba(26, 26, 26, 0.6), rgba(26, 26, 26, 0.6)), url('herobg.png') center/cover;
+    background: linear-gradient(rgba(26, 26, 26, 0.6), rgba(26, 26, 26, 0.6)), url('/images/herobg.png') center/cover;
     position: relative;
 }
 
@@ -246,15 +246,15 @@ body {
 }
 
 .news-1 {
-    background: var(--dark-secondary) url('newsbg-1.jpg') center/cover;
+    background: var(--dark-secondary) url('/images/newsbg-1.jpg') center/cover;
 }
 
 .news-2 {
-    background: var(--dark-secondary) url('newsbg-2.jpg') center/cover;
+    background: var(--dark-secondary) url('/images/newsbg-2.jpg') center/cover;
 }
 
 .news-3 {
-    background: var(--dark-secondary) url('newsbg-3.jpg') center/cover;
+    background: var(--dark-secondary) url('/images/newsbg-3.jpg') center/cover;
 }
 
 .news-card:hover {
