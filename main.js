@@ -1,4 +1,4 @@
-// Simple app with working hash routing
+// Simplified app with unified content system
 class CowboyToadWebsite {
     constructor() {
         this.content = {};
@@ -7,31 +7,17 @@ class CowboyToadWebsite {
     }
 
     async init() {
-        // Load content
         await this.loadContent();
-
-        // Create modal
         this.createModal();
-
-        // Bind events
         this.bindEvents();
-
-        // Render content
         this.renderNews();
         this.renderFaq();
-
-        // Handle initial hash
         this.handleHash();
     }
 
     async loadContent() {
         try {
-            const [news, faq, policies] = await Promise.all([
-                fetch('data/news.json').then(r => r.json()),
-                fetch('data/faq.json').then(r => r.json()),
-                fetch('data/policies.json').then(r => r.json())
-            ]);
-            this.content = { news, faq, policies };
+            this.content = await fetch('content.json').then(r => r.json());
         } catch (error) {
             console.error('Failed to load content:', error);
         }
@@ -55,7 +41,6 @@ class CowboyToadWebsite {
     }
 
     bindEvents() {
-        // Hash change
         window.addEventListener('hashchange', () => this.handleHash());
 
         // Modal close
@@ -74,9 +59,7 @@ class CowboyToadWebsite {
             const trigger = e.target.closest('[data-modal]');
             if (trigger) {
                 e.preventDefault();
-                const type = trigger.dataset.modal;
-                const id = trigger.dataset.id;
-                this.openModal(type, id);
+                this.openModal(trigger.dataset.modal, trigger.dataset.id);
             }
         });
 
@@ -120,26 +103,24 @@ class CowboyToadWebsite {
         const hash = window.location.hash.slice(1);
         if (!hash) return;
 
-        // Check if it's a modal hash
-        if (this.isModalHash(hash)) {
-            this.handleModalHash(hash);
+        const content = this.findContentByHash(hash);
+        if (content) {
+            this.showModal(content);
         } else {
-            // Section navigation
             this.scrollToSection(hash);
         }
     }
 
-    isModalHash(hash) {
-        // Simple check: if hash contains content that exists, it's a modal
-        return this.findContentByHash(hash) !== null;
-    }
-
     findContentByHash(hash) {
-        // Check news
-        const newsItem = this.content.news?.find(item => item.id === hash);
-        if (newsItem) return { type: 'news', item: newsItem };
+        // Search all content types for matching ID
+        for (const [type, items] of Object.entries(this.content)) {
+            if (!Array.isArray(items)) continue;
 
-        // Check policies
+            const item = items.find(item => item.id === hash);
+            if (item) return { type, item };
+        }
+
+        // Handle legacy hash mappings
         if (hash === 'privacy' || hash === 'privacy-policy') {
             const item = this.content.policies?.find(p => p.id === 'privacy-policy');
             if (item) return { type: 'policies', item };
@@ -149,59 +130,51 @@ class CowboyToadWebsite {
             if (item) return { type: 'policies', item };
         }
 
-        // Check FAQ
-        for (const game in this.content.faq || {}) {
-            const faqItem = this.content.faq[game].find(item => item.id === hash);
-            if (faqItem) return { type: 'faq', item: faqItem };
-        }
-
         return null;
     }
 
-    handleModalHash(hash) {
-        const content = this.findContentByHash(hash);
-        if (content) {
-            this.showModal(content.type, content.item);
-        }
-    }
-
     openModal(type, id) {
-        let item;
+        const items = this.content[type];
+        if (!items) return;
 
-        if (type === 'news') {
-            item = this.content.news?.find(n => n.id === id);
-        } else if (type === 'policies') {
-            item = this.content.policies?.find(p => p.id === id);
-        } else if (type === 'faq') {
-            for (const game in this.content.faq || {}) {
-                item = this.content.faq[game].find(f => f.id === id);
-                if (item) break;
-            }
-        }
+        const item = items.find(item => item.id === id);
+        if (!item) return;
 
-        if (item) {
-            // Set hash
-            let hash = id;
-            if (type === 'policies' && id === 'privacy-policy') hash = 'privacy';
-            if (type === 'policies' && id === 'terms-of-use') hash = 'terms';
+        // Set hash for navigation
+        let hash = id;
+        if (type === 'policies' && id === 'privacy-policy') hash = 'privacy';
+        if (type === 'policies' && id === 'terms-of-use') hash = 'terms';
 
-            history.pushState(null, null, `#${hash}`);
-            this.showModal(type, item);
-        }
+        history.pushState(null, null, `#${hash}`);
+        this.showModal({ type, item });
     }
 
-    showModal(type, item) {
+    showModal({ type, item }) {
         const title = document.getElementById('modal-title');
         const body = document.getElementById('modal-body');
 
         title.textContent = item.title;
 
+        // Build modal content based on available fields
         let content = '';
-        if (type === 'news') {
-            content = `<p class="modal-date">${this.formatDate(item.date)}</p>${item.body}`;
-        } else {
-            content = item.body;
+
+        // Add date if present
+        if (item.date) {
+            content += `<p class="modal-date">${this.formatDate(item.date)}</p>`;
         }
+
+        // Add image if present
+        if (item.image) {
+            content += `<img src="${item.image}" alt="${item.title}" class="modal-image" style="width: 100%; border-radius: var(--border-radius); margin-bottom: var(--spacing);">`;
+        }
+
+        // Add summary if present and different from title
+        if (item.summary && item.summary !== item.title) {
+            content += `<p class="modal-summary" style="font-weight: 600; color: var(--light-primary); margin-bottom: var(--spacing);">${item.summary}</p>`;
+        }
+
+        // Add main body content
+        content += item.body;
 
         body.innerHTML = content;
         this.modal.classList.add('active');
@@ -229,10 +202,10 @@ class CowboyToadWebsite {
 
         const html = this.content.news.map((item, index) => `
             <article class="news-card news-${index + 1}" data-modal="news" data-id="${item.id}" 
-                     style="background-image: url('${item.image}')">
+                     style="background-image: url('${item.image || ''}')">
                 <div class="news-content">
                     <h3>${item.title}</h3>
-                    <p>${item.summary}</p>
+                    <p>${item.summary || ''}</p>
                 </div>
             </article>
         `).join('');
@@ -247,19 +220,27 @@ class CowboyToadWebsite {
 
         if (!container || !this.content.faq) return;
 
-        const items = this.content.faq[this.activeFaqGame] || [];
-        const filtered = searchTerm
-            ? items.filter(item =>
+        // Filter FAQ items by game and search term
+        const items = this.content.faq.filter(item => {
+            const matchesGame = !item.game || item.game === this.activeFaqGame;
+            const matchesSearch = !searchTerm ||
                 item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                item.body.toLowerCase().includes(searchTerm.toLowerCase())
-            )
-            : items.slice(0, 6);
+                item.body.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                (item.summary && item.summary.toLowerCase().includes(searchTerm.toLowerCase()));
+
+            return matchesGame && matchesSearch;
+        });
+
+        const filtered = searchTerm ? items : items.slice(0, 6);
 
         if (filtered.length > 0) {
             const html = filtered.map(item => `
                 <div class="faq-item" data-modal="faq" data-id="${item.id}">
                     <h4>${this.highlightText(item.title, searchTerm)}</h4>
-                    <p>${this.highlightText(this.stripHtml(item.body).substring(0, 150) + '...', searchTerm)}</p>
+                    <p>${this.highlightText(
+                item.summary || this.stripHtml(item.body).substring(0, 150) + '...',
+                searchTerm
+            )}</p>
                 </div>
             `).join('');
 
