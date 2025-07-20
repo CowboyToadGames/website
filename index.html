@@ -5,10 +5,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cowboy Toad Games</title>
-    <link rel="icon" href="images/favicon.png" type="image/png">
+    <meta name="description"
+        content="Cowboy Toad Games is an indie game development studio creating choices-matter adventure games.">
+    <!-- Open Graph meta tags -->
+    <meta property="og:title" content="Cowboy Toad Games">
+    <meta property="og:description"
+        content="Cowboy Toad Games is an indie game development studio creating choices-matter adventure games.">
+    <meta property="og:image" content="https://cowboytoad.games/images/logo.svg">
+    <meta property="og:url" content="https://cowboytoad.games">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Cowboy Toad Games">
+    <!-- Twitter Card meta tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@cowboytoadgames">
+    <meta name="twitter:title" content="Cowboy Toad Games">
+    <meta name="twitter:description"
+        content="Cowboy Toad Games is an indie game development studio creating choices-matter adventure games.">
+    <meta name="twitter:image" content="https://cowboytoad.games/images/logo.svg">
+    <link rel="canonical" href="https://cowboytoad.games/">
+    <link rel="icon" href="images/favicon.ico" type="image/ico">
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="images/logo.svg" as="image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
     <link rel="stylesheet" href="styles.css">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Cowboy Toad Games",
+        "url": "https://cowboytoad.games",
+        "logo": "https://cowboytoad.games/images/logo.svg",
+        "description": "Cowboy Toad Games is an indie game development studio creating choices-matter adventure games.",
+        "foundingDate": "2024",
+        "email": "team@cowboytoad.games",
+        "sameAs": [
+            "https://store.steampowered.com/publisher/cowboytoadgames",
+            "https://x.com/cowboytoadgames",
+            "https://instagram.com/cowboytoadgames",
+            "https://facebook.com/cowboytoadteam",
+            "https://youtube.com/@cowboytoadgames",
+            "https://tiktok.com/@cowboytoadgames"
+        ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer service",
+            "email": "team@cowboytoad.games"
+        }
+    }
+    </script>
 </head>
 
 <body>
@@ -28,7 +75,7 @@
     </header>
     <main>
         <section id="hero" class="hero">
-            <img src="images/ncc-logo.png" alt="Nocturnals: Cacti Coast logo" class="hero-logo">
+            <img src="images/ncc-logo.svg" alt="Nocturnals: Cacti Coast logo" class="hero-logo">
             <div class="hero-actions flex-center">
                 <a href="https://youtube.com/#" class="btn btn-secondary" target="_blank" rel="noopener">
                     <i class="ti ti-brand-youtube-filled"></i> Watch Trailer </a>
@@ -88,11 +135,11 @@
                 <h2 class="section-title">Support</h2>
                 <div class="game-toggle flex-center">
                     <button class="toggle-btn active" data-game="nocturnals" aria-label="Show Nocturnals support">
-                        <img src="images/nocturnals-logo.png" alt="Nocturnals" class="toggle-logo">
+                        <img src="images/nocturnals-logo.svg" alt="Nocturnals" class="toggle-logo">
                     </button>
                     <button class="toggle-btn" data-game="nocturnals-cacti-coast"
                         aria-label="Show Nocturnals: Cacti Coast support">
-                        <img src="images/ncc-logo.png" alt="Nocturnals: Cacti Coast" class="toggle-logo">
+                        <img src="images/ncc-logo.svg" alt="Nocturnals: Cacti Coast" class="toggle-logo">
                     </button>
                 </div>
                 <search class="faq">

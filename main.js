@@ -12,7 +12,7 @@ const utils = {
 		};
 	},
 
-	safeQuerySelector(selector) {
+	querySelector: (selector) => {
 		try {
 			return document.querySelector(selector);
 		} catch (e) {
@@ -21,13 +21,13 @@ const utils = {
 		}
 	},
 
-	sanitizeHTML(str) {
+	sanitizeHTML: (str) => {
 		const div = document.createElement("div");
 		div.textContent = str;
 		return div.innerHTML;
 	},
 
-	formatDate(dateStr) {
+	formatDate: (dateStr) => {
 		try {
 			return new Date(dateStr).toLocaleDateString("en-GB", {
 				day: "numeric",
@@ -39,37 +39,49 @@ const utils = {
 			return dateStr;
 		}
 	},
+
+	highlight: (text, term) => {
+		if (!term || !text) return text;
+		try {
+			const regex = new RegExp(
+				`(${term.replace(/[.*+?^${}()|[\\]\\\\]/g, "\\\\$&")})`,
+				"gi"
+			);
+			return text.replace(regex, "<mark>$1</mark>");
+		} catch (e) {
+			console.warn("Error highlighting text:", e);
+			return text;
+		}
+	},
 };
 
 // Content management
-class ContentManager {
-	constructor() {
-		this.content = { news: [], faq: [], policies: [] };
-		this.isLoaded = false;
-	}
+const contentManager = {
+	content: { news: [], faq: [], policies: [] },
+	isLoaded: false,
 
-	async load() {
-		if (this.isLoaded) return this.content;
+	load: async () => {
+		if (contentManager.isLoaded) return contentManager.content;
 
 		try {
 			const response = await fetch("content.json");
 			if (!response.ok) {
 				throw new Error(`HTTP error! status: ${response.status}`);
 			}
-			this.content = await response.json();
-			this.isLoaded = true;
-			return this.content;
+			contentManager.content = await response.json();
+			contentManager.isLoaded = true;
+			return contentManager.content;
 		} catch (e) {
 			console.error("Failed to load content:", e);
-			this.content = { news: [], faq: [], policies: [] };
-			this.isLoaded = true;
-			return this.content;
+			contentManager.content = { news: [], faq: [], policies: [] };
+			contentManager.isLoaded = true;
+			return contentManager.content;
 		}
-	}
+	},
 
-	findItem(id) {
+	findItem: (id) => {
 		try {
-			for (const items of Object.values(this.content)) {
+			for (const items of Object.values(contentManager.content)) {
 				if (Array.isArray(items)) {
 					const item = items.find((i) => i.id === id);
 					if (item) return item;
@@ -79,11 +91,11 @@ class ContentManager {
 			console.warn(`Error finding item ${id}:`, e);
 		}
 		return null;
-	}
+	},
 
-	getFilteredFaq(game, searchTerm = "") {
+	getFilteredFaq: (game, searchTerm = "") => {
 		try {
-			const items = this.content.faq.filter((item) => {
+			const items = contentManager.content.faq.filter((item) => {
 				if (item.game && item.game !== game) return false;
 				if (!searchTerm) return true;
 
@@ -99,132 +111,106 @@ class ContentManager {
 			console.warn("Error filtering FAQ:", e);
 			return [];
 		}
-	}
-}
+	},
+};
 
 // Modal management
-function openModal(contentId, contentManager) {
-	const dialog = document.getElementById("modal");
-	const item = contentManager.findItem(contentId);
+const modal = {
+	open: (contentId) => {
+		const dialog = document.getElementById("modal");
+		const item = contentManager.findItem(contentId);
 
-	if (!item || !dialog) return false;
+		if (!item || !dialog) return false;
 
-	document.getElementById("modal-title").textContent = item.title;
-	document.getElementById("modal-body").innerHTML = formatModalContent(item);
+		document.getElementById("modal-title").textContent = item.title;
+		document.getElementById("modal-body").innerHTML = modal.formatContent(item);
 
-	// Store the previously focused element
-	dialog.previousFocus = document.activeElement;
 
-	// Calculate scrollbar width and prevent layout shift
-	const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-	document.documentElement.style.setProperty('--scrollbar-width', `${scrollbarWidth}px`);
-	
-	document.body.classList.add("no-scroll");
-	dialog.showModal();
+		// Calculate scrollbar width and prevent layout shift
+		const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+		document.documentElement.style.setProperty('--scrollbar-width', `${scrollbarWidth}px`);
+		
+		document.body.classList.add("no-scroll");
+		dialog.showModal();
 
-	// Focus the close button for accessibility
-	const closeButton = dialog.querySelector(".modal-close");
-	if (closeButton) closeButton.focus();
 
-	history.pushState(null, null, `#${contentId}`);
-	return true;
-}
+		history.pushState(null, null, `#${contentId}`);
+		return true;
+	},
 
-function closeModal() {
-	const dialog = document.getElementById("modal");
-	if (dialog?.open) {
-		document.body.classList.remove("no-scroll");
-		document.documentElement.style.removeProperty('--scrollbar-width');
-		dialog.close();
+	close: () => {
+		const dialog = document.getElementById("modal");
+		if (dialog?.open) {
+			document.body.classList.remove("no-scroll");
+			document.documentElement.style.removeProperty('--scrollbar-width');
+			dialog.close();
 
-		// Restore focus to previously focused element
-		if (
-			dialog.previousFocus &&
-			typeof dialog.previousFocus.focus === "function"
-		) {
-			dialog.previousFocus.focus();
+
+			history.pushState(null, null, location.pathname);
 		}
+	},
 
-		history.pushState(null, null, location.pathname);
-	}
-}
-
-function formatModalContent(item) {
-	let html = "";
-	if (item.date)
-		html += `<p class="modal-date">${utils.formatDate(item.date)}</p>`;
-	if (item.image)
-		html += `<img src="${item.image}" alt="${utils.sanitizeHTML(
-			item.title
-		)}" class="modal-image">`;
-	if (item.summary && item.summary !== item.title)
-		html += `<p class="modal-summary">${item.summary}</p>`;
-	html += item.body;
-	return html;
-}
+	formatContent: (item) => {
+		let html = "";
+		if (item.date)
+			html += `<p class="modal-date">${utils.formatDate(item.date)}</p>`;
+		if (item.image)
+			html += `<img src="${item.image}" alt="${utils.sanitizeHTML(
+				item.title
+			)}" class="modal-image" loading="lazy">`;
+		if (item.summary && item.summary !== item.title)
+			html += `<p class="modal-summary">${item.summary}</p>`;
+		html += item.body;
+		return html;
+	},
+};
 
 // Search functionality
-class SearchManager {
-	constructor(contentManager, renderCallback) {
-		this.contentManager = contentManager;
-		this.renderCallback = renderCallback;
-		this.searchBox = null;
-		this.debouncedSearch = utils.debounce(this.performSearch.bind(this), 300);
-		this.init();
-	}
+const search = {
+	searchBox: null,
+	renderCallback: null,
+	debouncedSearch: null,
 
-	init() {
-		this.searchBox = utils.safeQuerySelector(".search-box");
-		if (this.searchBox) {
-			this.searchBox.addEventListener("input", (e) => {
-				this.debouncedSearch(e.target.value);
+	init: (renderCallback) => {
+		search.renderCallback = renderCallback;
+		search.debouncedSearch = utils.debounce(search.performSearch, 300);
+		search.searchBox = utils.querySelector(".search-box");
+		if (search.searchBox) {
+			search.searchBox.addEventListener("input", (e) => {
+				search.debouncedSearch(e.target.value);
 			});
 		}
-	}
+	},
 
-	performSearch(term) {
-		if (this.renderCallback) {
-			this.renderCallback(term);
+	performSearch: (term) => {
+		if (search.renderCallback) {
+			search.renderCallback(term);
 		}
-	}
+	},
 
-	clear() {
-		if (this.searchBox) {
-			this.searchBox.value = "";
+	clear: () => {
+		if (search.searchBox) {
+			search.searchBox.value = "";
 		}
-	}
-
-	highlight(text, term) {
-		if (!term || !text) return text;
-		try {
-			const regex = new RegExp(
-				`(${term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`,
-				"gi"
-			);
-			return text.replace(regex, "<mark>$1</mark>");
-		} catch (e) {
-			console.warn("Error highlighting text:", e);
-			return text;
-		}
-	}
-}
+	},
+};
 
 // Event handling
-function initEvents(app) {
+const initEvents = (app) => {
 	// Single click handler for all modal and game interactions
 	document.addEventListener("click", (e) => {
 		const target = e.target;
 
 		// Modal close
 		if (target.closest(".modal-close")) {
-			closeModal();
+			modal.close();
 			return;
 		}
 
 		// Backdrop click to close modal
-		const modal = document.getElementById("modal");
-		if (target === modal && modal.open) {
-			closeModal();
+		const modalElement = document.getElementById("modal");
+		if (target === modalElement && modalElement.open) {
+			modal.close();
 			return;
 		}
 
@@ -232,7 +218,7 @@ function initEvents(app) {
 		const dataIdElement = target.closest("[data-id]");
 		if (dataIdElement) {
 			e.preventDefault();
-			openModal(dataIdElement.dataset.id, app.contentManager);
+			modal.open(dataIdElement.dataset.id);
 			return;
 		}
 
@@ -241,7 +227,7 @@ function initEvents(app) {
 			const hash = target.href.split("#")[1];
 			if (hash && !document.getElementById(hash)) {
 				e.preventDefault();
-				openModal(hash, app.contentManager);
+				modal.open(hash);
 				return;
 			}
 		}
@@ -256,41 +242,6 @@ function initEvents(app) {
 		}
 	});
 
-	// Enhanced keyboard navigation
-	document.addEventListener("keydown", (e) => {
-		const modal = document.getElementById("modal");
-
-		// Escape key closes modal
-		if (e.key === "Escape" && modal?.open) {
-			closeModal();
-			return;
-		}
-
-		// Enter/Space on modal triggers (for accessibility)
-		if ((e.key === "Enter" || e.key === " ") && e.target.closest("[data-id]")) {
-			e.preventDefault();
-			const element = e.target.closest("[data-id]");
-			openModal(element.dataset.id, app.contentManager);
-			return;
-		}
-
-		// Tab trap within modal
-		if (e.key === "Tab" && modal?.open) {
-			const focusableElements = modal.querySelectorAll(
-				'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-			);
-			const firstElement = focusableElements[0];
-			const lastElement = focusableElements[focusableElements.length - 1];
-
-			if (e.shiftKey && document.activeElement === firstElement) {
-				e.preventDefault();
-				lastElement.focus();
-			} else if (!e.shiftKey && document.activeElement === lastElement) {
-				e.preventDefault();
-				firstElement.focus();
-			}
-		}
-	});
 
 	// Hash change handling
 	window.addEventListener("hashchange", () => {
@@ -301,34 +252,28 @@ function initEvents(app) {
 		if (section) {
 			section.scrollIntoView({ behavior: "smooth" });
 		} else {
-			openModal(hash, app.contentManager);
+			modal.open(hash);
 		}
 	});
 }
 
 // Main application
-class App {
-	constructor() {
-		this.activeGame = "nocturnals";
-		this.contentManager = new ContentManager();
-		this.searchManager = new SearchManager(
-			this.contentManager,
-			this.renderFaq.bind(this)
-		);
-	}
+const app = {
+	activeGame: "nocturnals",
 
-	async init() {
+	init: async () => {
 		try {
-			await this.contentManager.load();
-			initEvents(this);
-			this.render();
-			this.handleInitialHash();
+			await contentManager.load();
+			search.init(app.renderFaq);
+			initEvents(app);
+			app.render();
+			app.handleInitialHash();
 		} catch (e) {
 			console.error("Failed to initialize app:", e);
 		}
-	}
+	},
 
-	handleInitialHash() {
+	handleInitialHash: () => {
 		const hash = location.hash.slice(1);
 		if (!hash) return;
 
@@ -336,50 +281,48 @@ class App {
 		if (section) {
 			section.scrollIntoView({ behavior: "smooth" });
 		} else {
-			openModal(hash, this.contentManager);
+			modal.open(hash);
 		}
-	}
+	},
 
-	switchGame(game) {
+	switchGame: (game) => {
 		if (!game) return;
 
 		try {
-			const currentActive = utils.safeQuerySelector(".toggle-btn.active");
-			const newActive = utils.safeQuerySelector(`[data-game="${game}"]`);
+			const currentActive = utils.querySelector(".toggle-btn.active");
+			const newActive = utils.querySelector(`[data-game="${game}"]`);
 
 			if (currentActive) currentActive.classList.remove("active");
 			if (newActive) newActive.classList.add("active");
 
-			this.activeGame = game;
-			this.searchManager.clear();
-			this.renderFaq();
+			app.activeGame = game;
+			search.clear();
+			app.renderFaq();
 		} catch (e) {
 			console.error("Error switching game:", e);
 		}
-	}
+	},
 
-	render() {
-		this.renderNews();
-		this.renderFaq();
-	}
+	render: () => {
+		app.renderNews();
+		app.renderFaq();
+	},
 
-	renderNews() {
-		const grid = utils.safeQuerySelector(".news-grid");
-		if (!grid || !this.contentManager.content.news) return;
+	renderNews: () => {
+		const grid = utils.querySelector(".news-grid");
+		if (!grid || !contentManager.content.news) return;
 
 		try {
-			grid.innerHTML = this.contentManager.content.news
-				.map((item, i) => {
-					const gameLogoSrc = this.getGameLogo(item.game);
+			grid.innerHTML = contentManager.content.news
+				.map((item) => {
+					const gameLogoSrc = app.getGameLogo(item.game);
 					const gameLogoHtml = gameLogoSrc
-						? `<img src="${gameLogoSrc}" alt="${item.game} logo" class="game-logo">`
+						? `<img src="${gameLogoSrc}" alt="${item.game} logo" class="game-logo" loading="lazy">`
 						: "";
 
-					return `<article class="news-card news-${i + 1}" data-id="${item.id}" 
+					return `<article class="news-card" data-id="${item.id}" 
                          style="background-image: url('${item.image || ""}')"
-                         role="button" tabindex="0" aria-label="Read ${utils.sanitizeHTML(
-						item.title
-					)}">
+>
                     <div class="news-content">
                         ${gameLogoHtml}
                         <h3>${utils.sanitizeHTML(item.title)}</h3>
@@ -391,24 +334,24 @@ class App {
 		} catch (e) {
 			console.error("Error rendering news:", e);
 		}
-	}
+	},
 
-	getGameLogo(game) {
+	getGameLogo: (game) => {
 		const logoMap = {
-			nocturnals: "images/nocturnals-logo.png",
-			"nocturnals-cacti-coast": "images/ncc-logo.png",
+			nocturnals: "images/nocturnals-logo.svg",
+			"nocturnals-cacti-coast": "images/ncc-logo.svg",
 		};
 		return logoMap[game] || null;
-	}
+	},
 
-	renderFaq(searchTerm = "") {
+	renderFaq: (searchTerm = "") => {
 		const results = document.getElementById("faq-results");
 
 		if (!results) return;
 
 		try {
-			const items = this.contentManager.getFilteredFaq(
-				this.activeGame,
+			const items = contentManager.getFilteredFaq(
+				app.activeGame,
 				searchTerm
 			);
 
@@ -416,12 +359,12 @@ class App {
 				.map(
 					(item) =>
 						`<div class="faq-item" data-id="${item.id
-						}" role="button" tabindex="0" aria-label="Read ${item.title}">
-                    <h4>${this.searchManager.highlight(
+						}">
+                    <h4>${utils.highlight(
 							item.title,
 							searchTerm
 						)}</h4>
-                    <p>${this.searchManager.highlight(
+                    <p>${utils.highlight(
 							item.body.replace(/<[^>]*>/g, "").substring(0, 150) +
 							"...",
 							searchTerm
@@ -432,9 +375,8 @@ class App {
 		} catch (e) {
 			console.error("Error rendering FAQ:", e);
 		}
-	}
-}
+	},
+};
 
 // Initialize app when DOM is ready
-const app = new App();
-document.addEventListener("DOMContentLoaded", () => app.init());
+document.addEventListener("DOMContentLoaded", app.init);

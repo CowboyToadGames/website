@@ -8,7 +8,6 @@
 }
 
 :root {
-	/* Colors */
 	--accent: #ff7139;
 	--accent-shadow: #ff71397e;
 	--dark-primary: #1a1a1a;
@@ -17,25 +16,10 @@
 	--light-primary: #e0e0e0;
 	--light-secondary: #b0b0b0;
 	--light-shadow: #ffffff60;
-
-	/* Layout */
 	--spacing: 1rem;
 	--border-radius: 0.5rem;
-	--max-width: 1200px;
-
-	/* Transitions */
 	--transition: all 0.2s ease;
-	--transition-hover: transform 0.2s ease;
-
-	/* Typography */
-	--font-family: "Jost", sans-serif;
-	--font-size-base: 1rem;
-	--font-size-large: clamp(2rem, 5vw, 3rem);
-	--font-size-medium: clamp(1.2rem, 4vw, 1.5rem);
 	--line-height: 1.5;
-
-	/* Shadows */
-	--shadow-light: 0 2px 16px rgba(0, 0, 0, 0.3);
 	--shadow-hover: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
@@ -44,10 +28,10 @@ html {
 }
 
 body {
-	font-family: var(--font-family);
+	font-family: "Jost", sans-serif;
 	background: var(--dark-primary);
 	color: var(--light-primary);
-	font-size: var(--font-size-base);
+	font-size: 1rem;
 	line-height: var(--line-height);
 }
 
@@ -83,7 +67,7 @@ body.no-scroll .header {
    ================================================================= */
 
 .container {
-	max-width: var(--max-width);
+	max-width: 1200px;
 	margin: 0 auto;
 	container-type: inline-size;
 }
@@ -97,7 +81,7 @@ body.no-scroll .header {
 }
 
 .section-title {
-	font-size: var(--font-size-large);
+	font-size: clamp(2rem, 5vw, 3rem);
 	margin-bottom: calc(var(--spacing) * 2);
 	text-align: center;
 }
@@ -138,9 +122,8 @@ body.no-scroll .header {
 	gap: 0.75rem;
 	border: none;
 	cursor: pointer;
-}
+	color: var(--light-primary);
 
-.btn {
 	i {
 		font-size: x-large;
 	}
@@ -154,18 +137,15 @@ body.no-scroll .header {
 
 .btn-primary {
 	background: var(--accent);
-	color: var(--light-primary);
 	box-shadow: 0 0 8px var(--accent-shadow);
 }
 
 .btn-secondary {
 	background: var(--dark-tertiary);
-	color: var(--light-primary);
 }
 
 .btn-discord {
 	background: #5865f2;
-	color: var(--light-primary);
 	box-shadow: 0 0 8px #5865f267;
 }
 
@@ -214,7 +194,7 @@ body.no-scroll .header {
 	background: var(--dark-secondary);
 	padding: var(--spacing) calc(var(--spacing) * 2);
 	z-index: 100;
-	box-shadow: var(--shadow-light);
+	box-shadow: 0 2px 16px rgba(0, 0, 0, 0.3);
 }
 
 .header .container {
@@ -259,7 +239,7 @@ body.no-scroll .header {
 	align-items: center;
 	padding: 80px calc(var(--spacing) * 2) calc(var(--spacing) * 2);
 	background: linear-gradient(rgba(26, 26, 26, 0.6), rgba(26, 26, 26, 0.6)),
-		url("images/herobg.png") center/cover;
+		url("images/herobg.svg") center/cover;
 }
 
 .hero-logo {
@@ -280,7 +260,7 @@ body.no-scroll .header {
 	container-type: inline-size;
 
 	h3 {
-		font-size: var(--font-size-medium);
+		font-size: clamp(1.2rem, 4vw, 1.5rem);
 		margin-bottom: var(--spacing);
 	}
 
@@ -329,7 +309,7 @@ body.no-scroll .header {
 	overflow: hidden;
 	border-radius: var(--border-radius);
 	cursor: pointer;
-	transition: var(--transition-hover);
+	transition: transform 0.2s ease;
 	height: 300px;
 	background: center/cover;
 }
@@ -359,7 +339,7 @@ body.no-scroll .header {
 
 .news-content {
 	h3 {
-		font-size: var(--font-size-medium);
+		font-size: clamp(1.2rem, 4vw, 1.5rem);
 		margin-bottom: calc(var(--spacing) * 0.5);
 	}
 
@@ -636,7 +616,7 @@ body.no-scroll .header {
 }
 
 /* =================================================================
-   RESPONSIVE DESIGN WITH CONTAINER QUERIES
+   RESPONSIVE DESIGN
    ================================================================= */
 
 @container (max-width: 768px) {
@@ -686,7 +666,6 @@ body.no-scroll .header {
 	}
 }
 
-/* Viewport-based queries for elements not within containers */
 @media (max-width: 768px) {
 	.nav {
 		display: none;
