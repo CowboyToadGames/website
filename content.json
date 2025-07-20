@@ -1,131 +1,130 @@
 {
-    "news": [
-        {
-            "id": "ncc-announcement",
-            "title": "Nocturnals: Cacti Coast Announcement",
-            "summary": "We're excited to announce the next game in the Nocturnals series!",
-            "body": "<p>After months of development, we're thrilled to reveal Nocturnals: Cacti Coast, the highly anticipated sequel to our beloved indie adventure game.</p><p>This new installment takes players to the sun-baked deserts of Cacti Coast, where new mysteries await and familiar characters return with enhanced abilities and deeper storylines.</p><p>Key features include:</p><ul><li>Expanded world with 3 new biomes</li><li>Online multiplayer for up to 6 players</li><li>Enhanced character customization</li><li>New storyline featuring beloved characters</li></ul><p>Wishlist now on Steam to be notified when the game launches!</p>",
-            "image": "images/newsbg-1.jpg",
-            "game": "nocturnals-cacti-coast",
-            "date": "2025-01-15"
-        },
-        {
-            "id": "ludonarracon-sale",
-            "title": "40% Off for LudoNarraCon",
-            "summary": "We're happy to announce that Nocturnals is on sale May 1st - 5th as part of LudoNarraCon!",
-            "body": "<p>We're excited to participate in LudoNarraCon 2025, the premier celebration of narrative-driven games!</p><p>From May 1st through May 5th, you can grab Nocturnals at a massive 40% discount on Steam. This is the perfect opportunity to experience our story-rich adventure if you haven't already.</p><p>LudoNarraCon showcases games that push the boundaries of interactive storytelling, and we're honored to be included alongside so many incredible titles.</p><p>Don't miss out on this limited-time offer - the sale ends May 5th at 11:59 PM PST!</p>",
-            "image": "images/newsbg-2.jpg",
-            "game": "nocturnals",
-            "date": "2025-04-25"
-        },
-        {
-            "id": "stop-killing-games",
-            "title": "Our support for Stop Killing Games",
-            "summary": "We express our support for the Stop Killing Games campaign in the UK.",
-            "body": "<p>As developers who care deeply about game preservation and player rights, Cowboy Toad Games officially supports the Stop Killing Games campaign.</p><p>This important initiative aims to prevent publishers from making games completely unplayable after support ends. We believe that when players purchase a game, they should have reasonable assurance that their purchase will remain functional.</p><p>Our commitment:</p><ul><li>All our games are designed to work offline</li><li>We avoid always-online DRM that could break functionality</li><li>If we ever discontinue a service, we'll provide transition plans</li></ul><p>We encourage other developers to consider the long-term impact of their technical decisions on game preservation.</p><p><a href='https://www.stopkillinggames.com/' target='_blank'>Learn more about the Stop Killing Games campaign</a></p>",
-            "image": "images/newsbg-3.jpg",
-            "game": "nocturnals",
-            "date": "2025-03-10"
-        }
-    ],
-    "faq": [
-        {
-            "id": "getting-started",
-            "title": "How do I start playing?",
-            "body": "<p>Getting started with Nocturnals is easy!</p><ol><li>Download and install the game from Steam</li><li>Launch the game and wait for initial setup</li><li>Choose your character from the character selection screen</li><li>Complete the tutorial to learn basic controls and mechanics</li></ol><p>The tutorial covers movement, jumping, interaction, and basic combat. Don't worry if you need to reference controls later - you can access the control guide anytime from the pause menu.</p>",
-            "game": "nocturnals"
-        },
-        {
-            "id": "system-requirements",
-            "title": "What are the system requirements?",
-            "body": "<p>Nocturnals has modest system requirements:</p><h4>Minimum Requirements:</h4><ul><li>OS: Windows 10 64-bit</li><li>Processor: Intel i3-4130 / AMD FX-4300</li><li>Memory: 4 GB RAM</li><li>Graphics: DirectX 11 compatible</li><li>Storage: 2 GB available space</li></ul><h4>Recommended:</h4><ul><li>OS: Windows 11 64-bit</li><li>Processor: Intel i5-8400 / AMD Ryzen 5 2600</li><li>Memory: 8 GB RAM</li><li>Graphics: GTX 1060 / RX 580 or better</li><li>Storage: 4 GB available space (SSD recommended)</li></ul>",
-            "game": "nocturnals"
-        },
-        {
-            "id": "multiplayer",
-            "title": "Can I play with friends?",
-            "body": "<p>Yes! Nocturnals supports local multiplayer for up to 4 players.</p><p>To start a multiplayer session:</p><ol><li>From the main menu, select \"Multiplayer\"</li><li>Choose \"Local Co-op\"</li><li>Connect up to 4 controllers (Xbox and PlayStation controllers supported)</li><li>Select your characters and start playing!</li></ol><p>Each player can choose from the same roster of characters, and progress is shared among all players. Local multiplayer uses split-screen when players are far apart, and a shared camera when they're close together.</p>",
-            "game": "nocturnals"
-        },
-        {
-            "id": "save-progress",
-            "title": "How do I save my progress?",
-            "body": "<p>Nocturnals uses an automatic save system - you don't need to manually save your game.</p><p>Your progress is saved automatically at:</p><ul><li>Checkpoints: Regular save points throughout levels</li><li>Level completion: After finishing any level</li><li>Character upgrades: When you unlock new abilities</li><li>Settings changes: When you modify game options</li></ul><p>If you're playing on Steam, your save data is also backed up to Steam Cloud, so you can continue your progress on different computers.</p><p><em>Note: The game saves automatically, but avoid closing the game during the \"Saving...\" indicator to prevent data loss.</em></p>",
-            "game": "nocturnals"
-        },
-        {
-            "id": "controls",
-            "title": "What controls do I use?",
-            "body": "<p>Nocturnals supports both keyboard/mouse and controller input:</p><h4>Keyboard Controls:</h4><ul><li>WASD: Move character</li><li>Space: Jump</li><li>Mouse: Aim and interact</li><li>Left Click: Primary action/attack</li><li>Right Click:</b> Secondary action</li><li>E: Interact with objects</li><li>ESC: Pause menu</li><li>Tab: Inventory/character screen</li></ul><h4>Controller Support:</h4><p>Xbox and PlayStation controllers are fully supported with haptic feedback. Controller mappings can be customized in the settings menu.</p><p>You can also remap any keyboard controls in Settings > Controls.</p>",
-            "game": "nocturnals"
-        },
-        {
-            "id": "graphics-settings",
-            "title": "How do I change graphics settings?",
-            "body": "<p>Graphics settings can be accessed from multiple locations:</p><h4>From Main Menu:</h4><ol><li>Click \"Settings\" from the main menu</li><li>Select \"Graphics\" tab</li><li>Adjust settings and click \"Apply\"</li></ol><h4>During Gameplay:</h4><ol><li>Press ESC to open pause menu</li><li>Select \"Settings\"</li><li>Navigate to \"Graphics\" tab</li></ul><h4>Available Options:</h4><ul><li>Resolution: Display resolution</li><li>Display Mode: Fullscreen, windowed, borderless</li><li>Quality Preset: Low, Medium, High, Ultra</li><li>VSync: On/Off</li><li>Frame Rate Limit: 30/60/120/Unlimited</li></ul><p>Changes take effect immediately, and the game will remember your preferences.</p>",
-            "game": "nocturnals"
-        },
-        {
-            "id": "controller-support",
-            "title": "Can I use a controller?",
-            "body": "<p>Yes! Nocturnals has excellent controller support.</p><h4>Supported Controllers:</h4><ul><li>Xbox controllers: Xbox One, Xbox Series X/S (wired and wireless)</li><li>PlayStation controllers: PS4 DualShock 4, PS5 DualSense (wired and wireless)</li><li>Generic controllers: Most DirectInput and XInput compatible controllers</li></ul><h4>Features:</h4><ul><li>Haptic feedback: Controller vibration for immersive gameplay</li><li>Custom mapping: Remap any button in settings</li><li>Multiple controllers: Support for up to 4 controllers simultaneously</li><li>Automatic detection: Plug and play - no additional setup required</li></ul><p>If your controller isn't detected, try using Steam's controller support or check our troubleshooting guide.</p>",
-            "game": "nocturnals"
-        },
-        {
-            "id": "bug-reporting",
-            "title": "How do I report bugs?",
-            "body": "<p>We appreciate bug reports! Here's how to help us fix issues:</p><h4>Best Methods:</h4><ul><li>Discord: Join our <a href='https://discord.gg/invite/cowboy-toad-games-967203768867356674' target='_blank'>Discord server</a> and use the #bug-reports channel</li><li>Email: Send details to <a href='mailto:team@cowboytoad.games'>team@cowboytoad.games</a></li></ul><h4>What to Include:</h4><ul><li>Description: What happened vs. what you expected</li><li>Steps to reproduce: How to trigger the bug</li><li>System info: OS, graphics card, controller type</li><li>Screenshots/video: Visual evidence if applicable</li><li>Save file: If the bug affects progression</li></ul><p>We aim to respond to all bug reports within 72 hours. Critical bugs that prevent gameplay are our highest priority.</p>",
-            "game": "nocturnals"
-        },
-        {
-            "id": "release-date",
-            "title": "When will Cacti Coast be released?",
-            "body": "<p>Nocturnals: Cacti Coast is currently in active development.</p><p>While we don't have a specific release date yet, we're targeting late 2025 for the initial PC release. We want to ensure the game meets our quality standards and provides the experience our community deserves.</p><p>Stay updated:</p><ul><li>Wishlist on Steam to get notified the moment we announce a release date</li><li>Join our Discord for development updates and behind-the-scenes content</li><li>Follow our social media for regular progress updates</li></ul><p>We'll be sharing more details about release timing as development progresses!</p>",
-            "game": "nocturnals-cacti-coast"
-        },
-        {
-            "id": "save-compatibility",
-            "title": "Will my Nocturnals save carry over?",
-            "body": "<p>We're actively working on save data compatibility between Nocturnals and Cacti Coast.</p><p>What we're planning:</p><ul><li>Character unlocks: Your unlocked characters should carry over</li><li>Achievement progress: Completed achievements will be recognized</li><li>Cosmetic items: Any unlocked cosmetics will transfer</li><li>Story progression: Completed story milestones will be acknowledged</li></ul><p>What might not transfer:</p><ul><li>Specific save file positions (Cacti Coast has new levels)</li><li>Some technical settings that may change</li></ul><p>This is still being finalized during development, but save compatibility is a priority for us. We'll provide more details as we get closer to release.</p>",
-            "game": "nocturnals-cacti-coast"
-        },
-        {
-            "id": "new-features",
-            "title": "What new features are planned?",
-            "body": "<p>Cacti Coast will significantly expand on the original Nocturnals experience:</p><h4>New Content:</h4><ul><li>3 New Biomes: Desert, Oasis, and Underground Caverns</li><li>Enhanced Story: Deeper character development and new storylines</li><li>New Characters: Additional playable characters with unique abilities</li><li>Extended Campaign: 50% more content than the original</li></ul><h4>Gameplay Improvements:</h4><ul><li>Online Multiplayer: Play with friends across the internet</li><li>Character Customization: Customize appearance and abilities</li><li>Dynamic Weather: Weather effects that impact gameplay</li><li>Improved Combat: More responsive and varied combat system</li></ul><h4>Technical Enhancements:</h4><ul><li>Enhanced Graphics: Improved lighting and visual effects</li><li>Better Performance: Optimized for a wider range of hardware</li><li>Accessibility: More accessibility options for different players</li></ul>",
-            "game": "nocturnals-cacti-coast"
-        },
-        {
-            "id": "beta-access",
-            "title": "Can I play the beta?",
-            "body": "<p>We're planning a beta test program for Cacti Coast!</p><p>Beta Timeline:</p><ul><li>Closed Beta: Mid-2025 for selected community members</li><li>Open Beta: Late 2025, closer to release</li></ul><p>How to get Beta Access:</p><ul><li>Discord Members: Beta invitations will be announced in our Discord server first</li><li>Steam Wishlist: Wishlist the game for potential beta key distribution</li><li>Community Participation: Active community members may receive priority access</li></ul><p>What to Expect in Beta:</p><ul><li>Early access to new features and content</li><li>Opportunity to provide feedback that shapes the final game</li><li>Exclusive beta cosmetic rewards</li><li>Direct interaction with the development team</li></ul><p>Join our Discord to be first in line for beta announcements!</p>",
-            "game": "nocturnals-cacti-coast"
-        },
-        {
-            "id": "platforms",
-            "title": "What platforms will it support?",
-            "body": "<p>Cacti Coast will launch on multiple platforms, with a staggered release schedule:</p><h4>Launch Platforms (Late 2025):</h4><ul><li>PC (Steam): Windows, with potential Mac/Linux support</li><li>Steam Deck: Verified compatibility at launch</li></ul><h4>Console Versions (2026):</h4><ul><li>Nintendo Switch: Optimized for handheld and docked play</li><li>PlayStation 5: Enhanced with DualSense haptic feedback</li><li>Xbox Series X/S: Optimized for both console variants</li></ul><h4>Why the Staggered Release?</h4><p>We want to ensure each platform gets the attention it deserves. Starting with PC allows us to:</p><ul><li>Gather community feedback and polish the experience</li><li>Optimize performance for each console's unique capabilities</li><li>Implement platform-specific features (like Nintendo Switch's portability)</li></ul><p>Console players who wishlist on their platform of choice will be notified as soon as those versions are available!</p>",
-            "game": "nocturnals-cacti-coast"
-        },
-        {
-            "id": "online-multiplayer",
-            "title": "Will there be new multiplayer modes?",
-            "body": "<p>Yes! Cacti Coast will feature significantly expanded multiplayer options:</p><h4>Online Multiplayer:</h4><ul><li>Co-op Campaign: Play the full story with up to 6 friends online</li><li>Cross-platform Play: Play with friends regardless of their platform</li><li>Drop-in/Drop-out: Friends can join your game anytime</li><li>Voice Chat Integration: Built-in voice communication</li></ul><h4>New Game Modes:</h4><ul><li>Survival Mode: Work together to survive waves of enemies</li><li>Time Trials: Compete for fastest completion times</li><li>Exploration Challenges: Collaborative puzzle-solving mode</li><li>Custom Games: Create your own game rules and challenges</li></ul><h4>Enhanced Local Play:</h4><ul><li>Up to 6 local players: More friends can join the couch co-op experience</li><li>Better camera system: Improved split-screen and shared camera mechanics</li><li>Mixed online/local: Combine local and online players in the same session</li></ul><p>All multiplayer modes are designed to be accessible to players of different skill levels!</p>",
-            "game": "nocturnals-cacti-coast"
-        }
-    ],
-    "policies": [
-        {
-            "id": "privacy-policy",
-            "title": "Privacy Policy",
-            "body": "<p>Last updated: 08/07/2025</p><p>This Privacy Policy outlines how Cowboy Toad Games LTD (\"we,\" \"us,\" or \"our\") handles your data, how it may be used, and the limited circumstances under which it might be processed when you interact with our games, website, and related services.</p><h4>1. No Active Data Collection</h4><p>We design our games with privacy in mind. None of our games actively collect, track, or transmit any personal information. Specifically:</p><ul><li>We do not collect personal data such as your name, email address, IP address, or payment information.</li><li>We do not use cookies, analytics, advertising identifiers, or tracking technologies within our games.</li><li>We do not transmit gameplay data, preferences, or personal identifiers to our servers or any third party.</li></ul><h4>2. Limited Data Handling</h4><p>While our games themselves do not collect data, some limited usage data may be processed through the third-party services we rely on:</p><ul><li>Cloudflare Analytics: Our website uses <a href=\"https://www.cloudflare.com/privacypolicy/\" target=\"_blank\" rel=\"noopener\">Cloudflare Analytics</a> to monitor traffic and performance. This service uses anonymized data to help improve security and site reliability. We do not use Cloudflare to collect personal information or track users across sites.</li><li>Steam Cloud: If you play our games via Steam, save game data may be stored through Steam Cloud. We do not access or store this data directly. Please refer to the <a href=\"https://store.steampowered.com/privacy_agreement/\" target=\"_blank\" rel=\"noopener\">Steam Privacy Policy</a> for more information.</li></ul><h4>3. Third-Party Platforms</h4><p>Our games may be downloaded and played through third-party platforms, each of which may collect and process data under their own privacy practices. These platforms include:</p><ul><li><a href=\"https://store.steampowered.com/privacy_agreement/\" target=\"_blank\" rel=\"noopener\">Steam (Valve Corporation)</a></li><li><a href=\"https://www.apple.com/legal/privacy/\" target=\"_blank\" rel=\"noopener\">Apple App Store (Apple Inc.)</a></li><li><a href=\"https://policies.google.com/privacy\" target=\"_blank\" rel=\"noopener\">Google Play Store (Google LLC)</a></li></ul><p>We encourage you to review the privacy policies of any platform through which you access our games, as we do not control the data collection practices of these services.</p><h4>4. Children's Privacy</h4><p>Our games are not intended for children under the age of 13, and we do not knowingly collect personal information from children. If you believe that a child has provided us with personal data in violation of this policy, please contact us and we will promptly take steps to remove such information.</p><h4>5. Changes to This Privacy Policy</h4><p>We may update this Privacy Policy from time to time as our products evolve or in response to legal or regulatory changes. All changes will be posted on this page and, where appropriate, we will notify users of material updates.</p><h4>6. Contact Us</h4><p>If you have any questions, concerns, or feedback about this Privacy Policy or our data practices, please contact us at:<br><a href=\"mailto:team@cowboytoad.games\">team@cowboytoad.games</a></p>",
-            "date": "2025-07-08"
-        },
-        {
-            "id": "terms-of-use",
-            "title": "Terms of Use",
-            "body": "<p>Last updated: 08/07/2025</p><p>Welcome to https://cowboytoad.games, operated by Cowboy Toad Games LTD (\"we,\" \"us,\" or \"our\"), a limited company registered in the United Kingdom. By accessing or using this website, you agree to be bound by these Terms of Use. If you do not agree, please do not use our site.</p><h4>1. Use of the Website</h4><p>This website is provided for informational and promotional purposes only. It offers developer news, information about our games, links to third-party storefronts (such as Steam, Google Play, and the Apple App Store), and support resources.</p><p>You are not required to create an account to access any part of our site. We do not host user-submitted content or interactive features on the website.</p><h4>2. Intellectual Property</h4><p>All content, including text, images, artwork, videos, audio, and game assets, is the property of Cowboy Toad Games LTD unless explicitly stated otherwise.</p><p>You may not extract, modify, reproduce, or redistribute assets from our games or website for commercial use or in any way that misrepresents or harms our brand.</p><p>However, we encourage and permit the following:</p><ul><li>Streaming gameplay footage of our games</li><li>Creating fanart</li><li>Using our characters or games in thumbnails and social media posts that promote or discuss our games</li></ul><p>We reserve the right to revoke these permissions if content is deemed misleading, harmful, or inappropriate.</p><h4>3. Discord Server and Community Conduct</h4><p>Our official community discussion takes place on our Discord server. This server is moderated by volunteers, and participation is subject to the following rules:</p><ul><li>Be Respectful: No hate speech, harassment, or personal attacks.</li><li>Keep it Clean: No explicit or offensive content.</li><li>No Spamming: Excessive messaging is not allowed.</li><li>Respect Privacy: Do not share personal information.</li><li>Use Channels Appropriately: Post only relevant content per channel.</li><li>No AI-Generated Art: Fanart channels are for original, human-created artwork only.</li><li>Age Requirements: The Discord server is intended for users aged 16 and older. Users under 16 will be removed. Users under 13 will be permanently banned, in compliance with platform policies and child protection laws.</li></ul><p>Violations may result in removal or bans from the community at the discretion of moderators.</p><h4>4. External Links</h4><p>Our site contains links to third-party websites, such as digital storefronts (Steam, Google Play, Apple App Store), and social platforms (Discord, YouTube). We do not control these sites and are not responsible for their content, privacy policies, or terms. Visiting these sites is at your own risk.</p><h4>5. Age Restrictions</h4><p>Our games are not intended for children under the age of 13, due to mature themes, violence, and strong language. The website itself does not restrict access based on age, but some content may not be suitable for younger audiences.</p><h4>6. Disclaimer</h4><p>This website and its content are provided \"as is,\" without warranty of any kind. We do not guarantee that the site will be error-free or available at all times. We may modify or suspend access to any part of the site without notice.</p><h4>7. Limitation of Liability</h4><p>To the maximum extent permitted by law, Cowboy Toad Games LTD shall not be held liable for any direct, indirect, incidental, or consequential damages arising from your use of the site, its content, or linked services.</p><h4>8. Modifications</h4><p>We reserve the right to update these Terms of Use at any time. Changes will be posted on this page with a new \"Last updated\" date. Continued use of the site after changes are posted implies your acceptance of the revised terms.</p><h4>9. Governing Law</h4><p>These Terms are governed by the laws of England and Wales. Any disputes will be subject to the exclusive jurisdiction of the courts of England and Wales.</p><h4>10. Privacy Policy</h4><p>By using our site, you also agree to our <a href=\"#\" onclick=\"openModal('policy', 'privacy-policy')\">Privacy Policy</a>, which explains how we handle data and user information.</p>",
-            "date": "2025-07-08"
-        }
-    ]
+	"news": [
+		{
+			"id": "ncc-announcement",
+			"title": "Announcement",
+			"summary": "We're excited to announce the next game in the Nocturnals series!",
+			"body": "<p>After months of development, we're thrilled to reveal Nocturnals: Cacti Coast, the highly anticipated sequel to our beloved indie adventure game.</p><p>This new installment takes players to the sun-baked deserts of Cacti Coast, where new mysteries await and familiar characters return with enhanced abilities and deeper storylines.</p><p>Key features include:</p><ul><li>Expanded world with 3 new biomes</li><li>Online multiplayer for up to 6 players</li><li>Enhanced character customization</li><li>New storyline featuring beloved characters</li></ul><p>Wishlist now on Steam to be notified when the game launches!</p><p>After months of development, we're thrilled to reveal Nocturnals: Cacti Coast, the highly anticipated sequel to our beloved indie adventure game.</p><p>This new installment takes players to the sun-baked deserts of Cacti Coast, where new mysteries await and familiar characters return with enhanced abilities and deeper storylines.</p><p>Key features include:</p><ul><li>Expanded world with 3 new biomes</li><li>Online multiplayer for up to 6 players</li><li>Enhanced character customization</li><li>New storyline featuring beloved characters</li></ul><p>Wishlist now on Steam to be notified when the game launches!</p><p>After months of development, we're thrilled to reveal Nocturnals: Cacti Coast, the highly anticipated sequel to our beloved indie adventure game.</p><p>This new installment takes players to the sun-baked deserts of Cacti Coast, where new mysteries await and familiar characters return with enhanced abilities and deeper storylines.</p><p>Key features include:</p><ul><li>Expanded world with 3 new biomes</li><li>Online multiplayer for up to 6 players</li><li>Enhanced character customization</li><li>New storyline featuring beloved characters</li></ul><p>Wishlist now on Steam to be notified when the game launches!</p><p>After months of development, we're thrilled to reveal Nocturnals: Cacti Coast, the highly anticipated sequel to our beloved indie adventure game.</p><p>This new installment takes players to the sun-baked deserts of Cacti Coast, where new mysteries await and familiar characters return with enhanced abilities and deeper storylines.</p><p>Key features include:</p><ul><li>Expanded world with 3 new biomes</li><li>Online multiplayer for up to 6 players</li><li>Enhanced character customization</li><li>New storyline featuring beloved characters</li></ul><p>Wishlist now on Steam to be notified when the game launches!</p>",
+			"image": "images/modals/ncc-announcement.jpg",
+			"game": "nocturnals-cacti-coast",
+			"date": "2025-01-15"
+		},
+		{
+			"id": "ludonarracon-sale",
+			"title": "LudoNarraCon",
+			"summary": "Nocturnals is on sale May 1st - 5th as part of LudoNarraCon!",
+			"body": "<p>We're excited to participate in LudoNarraCon 2025, the premier celebration of narrative-driven games!</p><p>From May 1st through May 5th, you can grab Nocturnals at a massive 40% discount on Steam. This is the perfect opportunity to experience our story-rich adventure if you haven't already.</p><p>LudoNarraCon showcases games that push the boundaries of interactive storytelling, and we're honored to be included alongside so many incredible titles.</p><p>Don't miss out on this limited-time offer - the sale ends May 5th at 11:59 PM PST!</p>",
+			"image": "images/modals/ludonarracon-sale.jpg",
+			"game": "nocturnals",
+			"date": "2025-04-25"
+		},
+		{
+			"id": "stop-killing-games",
+			"title": "Stop Killing Games",
+			"summary": "We express our support for the Stop Killing Games campaign in the UK.",
+			"body": "<p>As developers who care deeply about game preservation and player rights, Cowboy Toad Games officially supports the Stop Killing Games campaign.</p><p>This important initiative aims to prevent publishers from making games completely unplayable after support ends. We believe that when players purchase a game, they should have reasonable assurance that their purchase will remain functional.</p><p>Our commitment:</p><ul><li>All our games are designed to work offline</li><li>We avoid always-online DRM that could break functionality</li><li>If we ever discontinue a service, we'll provide transition plans</li></ul><p>We encourage other developers to consider the long-term impact of their technical decisions on game preservation.</p><p><a href='https://www.stopkillinggames.com/' target='_blank'>Learn more about the Stop Killing Games campaign</a></p>",
+			"image": "images/modals/stop-killing-games.jpg",
+			"date": "2025-03-10"
+		}
+	],
+	"faq": [
+		{
+			"id": "getting-started",
+			"title": "How do I start playing?",
+			"body": "<p>Getting started with Nocturnals is easy!</p><ol><li>Download and install the game from Steam</li><li>Launch the game and wait for initial setup</li><li>Choose your character from the character selection screen</li><li>Complete the tutorial to learn basic controls and mechanics</li></ol><p>The tutorial covers movement, jumping, interaction, and basic combat. Don't worry if you need to reference controls later - you can access the control guide anytime from the pause menu.</p>",
+			"game": "nocturnals"
+		},
+		{
+			"id": "system-requirements",
+			"title": "What are the system requirements?",
+			"body": "<p>Nocturnals has modest system requirements:</p><h4>Minimum Requirements:</h4><ul><li>OS: Windows 10 64-bit</li><li>Processor: Intel i3-4130 / AMD FX-4300</li><li>Memory: 4 GB RAM</li><li>Graphics: DirectX 11 compatible</li><li>Storage: 2 GB available space</li></ul><h4>Recommended:</h4><ul><li>OS: Windows 11 64-bit</li><li>Processor: Intel i5-8400 / AMD Ryzen 5 2600</li><li>Memory: 8 GB RAM</li><li>Graphics: GTX 1060 / RX 580 or better</li><li>Storage: 4 GB available space (SSD recommended)</li></ul>",
+			"game": "nocturnals"
+		},
+		{
+			"id": "multiplayer",
+			"title": "Can I play with friends?",
+			"body": "<p>Yes! Nocturnals supports local multiplayer for up to 4 players.</p><p>To start a multiplayer session:</p><ol><li>From the main menu, select \"Multiplayer\"</li><li>Choose \"Local Co-op\"</li><li>Connect up to 4 controllers (Xbox and PlayStation controllers supported)</li><li>Select your characters and start playing!</li></ol><p>Each player can choose from the same roster of characters, and progress is shared among all players. Local multiplayer uses split-screen when players are far apart, and a shared camera when they're close together.</p>",
+			"game": "nocturnals"
+		},
+		{
+			"id": "save-progress",
+			"title": "How do I save my progress?",
+			"body": "<p>Nocturnals uses an automatic save system - you don't need to manually save your game.</p><p>Your progress is saved automatically at:</p><ul><li>Checkpoints: Regular save points throughout levels</li><li>Level completion: After finishing any level</li><li>Character upgrades: When you unlock new abilities</li><li>Settings changes: When you modify game options</li></ul><p>If you're playing on Steam, your save data is also backed up to Steam Cloud, so you can continue your progress on different computers.</p><p><em>Note: The game saves automatically, but avoid closing the game during the \"Saving...\" indicator to prevent data loss.</em></p>",
+			"game": "nocturnals"
+		},
+		{
+			"id": "controls",
+			"title": "What controls do I use?",
+			"body": "<p>Nocturnals supports both keyboard/mouse and controller input:</p><h4>Keyboard Controls:</h4><ul><li>WASD: Move character</li><li>Space: Jump</li><li>Mouse: Aim and interact</li><li>Left Click: Primary action/attack</li><li>Right Click:</b> Secondary action</li><li>E: Interact with objects</li><li>ESC: Pause menu</li><li>Tab: Inventory/character screen</li></ul><h4>Controller Support:</h4><p>Xbox and PlayStation controllers are fully supported with haptic feedback. Controller mappings can be customized in the settings menu.</p><p>You can also remap any keyboard controls in Settings > Controls.</p>",
+			"game": "nocturnals"
+		},
+		{
+			"id": "graphics-settings",
+			"title": "How do I change graphics settings?",
+			"body": "<p>Graphics settings can be accessed from multiple locations:</p><h4>From Main Menu:</h4><ol><li>Click \"Settings\" from the main menu</li><li>Select \"Graphics\" tab</li><li>Adjust settings and click \"Apply\"</li></ol><h4>During Gameplay:</h4><ol><li>Press ESC to open pause menu</li><li>Select \"Settings\"</li><li>Navigate to \"Graphics\" tab</li></ul><h4>Available Options:</h4><ul><li>Resolution: Display resolution</li><li>Display Mode: Fullscreen, windowed, borderless</li><li>Quality Preset: Low, Medium, High, Ultra</li><li>VSync: On/Off</li><li>Frame Rate Limit: 30/60/120/Unlimited</li></ul><p>Changes take effect immediately, and the game will remember your preferences.</p>",
+			"game": "nocturnals"
+		},
+		{
+			"id": "controller-support",
+			"title": "Can I use a controller?",
+			"body": "<p>Yes! Nocturnals has excellent controller support.</p><h4>Supported Controllers:</h4><ul><li>Xbox controllers: Xbox One, Xbox Series X/S (wired and wireless)</li><li>PlayStation controllers: PS4 DualShock 4, PS5 DualSense (wired and wireless)</li><li>Generic controllers: Most DirectInput and XInput compatible controllers</li></ul><h4>Features:</h4><ul><li>Haptic feedback: Controller vibration for immersive gameplay</li><li>Custom mapping: Remap any button in settings</li><li>Multiple controllers: Support for up to 4 controllers simultaneously</li><li>Automatic detection: Plug and play - no additional setup required</li></ul><p>If your controller isn't detected, try using Steam's controller support or check our troubleshooting guide.</p>",
+			"game": "nocturnals"
+		},
+		{
+			"id": "bug-reporting",
+			"title": "How do I report bugs?",
+			"body": "<p>We appreciate bug reports! Here's how to help us fix issues:</p><h4>Best Methods:</h4><ul><li>Discord: Join our <a href='https://discord.gg/invite/cowboy-toad-games-967203768867356674' target='_blank'>Discord server</a> and use the #bug-reports channel</li><li>Email: Send details to <a href='mailto:team@cowboytoad.games'>team@cowboytoad.games</a></li></ul><h4>What to Include:</h4><ul><li>Description: What happened vs. what you expected</li><li>Steps to reproduce: How to trigger the bug</li><li>System info: OS, graphics card, controller type</li><li>Screenshots/video: Visual evidence if applicable</li><li>Save file: If the bug affects progression</li></ul><p>We aim to respond to all bug reports within 72 hours. Critical bugs that prevent gameplay are our highest priority.</p>",
+			"game": "nocturnals"
+		},
+		{
+			"id": "release-date",
+			"title": "When will Cacti Coast be released?",
+			"body": "<p>Nocturnals: Cacti Coast is currently in active development.</p><p>While we don't have a specific release date yet, we're targeting late 2025 for the initial PC release. We want to ensure the game meets our quality standards and provides the experience our community deserves.</p><p>Stay updated:</p><ul><li>Wishlist on Steam to get notified the moment we announce a release date</li><li>Join our Discord for development updates and behind-the-scenes content</li><li>Follow our social media for regular progress updates</li></ul><p>We'll be sharing more details about release timing as development progresses!</p>",
+			"game": "nocturnals-cacti-coast"
+		},
+		{
+			"id": "save-compatibility",
+			"title": "Will my Nocturnals save carry over?",
+			"body": "<p>We're actively working on save data compatibility between Nocturnals and Cacti Coast.</p><p>What we're planning:</p><ul><li>Character unlocks: Your unlocked characters should carry over</li><li>Achievement progress: Completed achievements will be recognized</li><li>Cosmetic items: Any unlocked cosmetics will transfer</li><li>Story progression: Completed story milestones will be acknowledged</li></ul><p>What might not transfer:</p><ul><li>Specific save file positions (Cacti Coast has new levels)</li><li>Some technical settings that may change</li></ul><p>This is still being finalized during development, but save compatibility is a priority for us. We'll provide more details as we get closer to release.</p>",
+			"game": "nocturnals-cacti-coast"
+		},
+		{
+			"id": "new-features",
+			"title": "What new features are planned?",
+			"body": "<p>Cacti Coast will significantly expand on the original Nocturnals experience:</p><h4>New Content:</h4><ul><li>3 New Biomes: Desert, Oasis, and Underground Caverns</li><li>Enhanced Story: Deeper character development and new storylines</li><li>New Characters: Additional playable characters with unique abilities</li><li>Extended Campaign: 50% more content than the original</li></ul><h4>Gameplay Improvements:</h4><ul><li>Online Multiplayer: Play with friends across the internet</li><li>Character Customization: Customize appearance and abilities</li><li>Dynamic Weather: Weather effects that impact gameplay</li><li>Improved Combat: More responsive and varied combat system</li></ul><h4>Technical Enhancements:</h4><ul><li>Enhanced Graphics: Improved lighting and visual effects</li><li>Better Performance: Optimized for a wider range of hardware</li><li>Accessibility: More accessibility options for different players</li></ul>",
+			"game": "nocturnals-cacti-coast"
+		},
+		{
+			"id": "beta-access",
+			"title": "Can I play the beta?",
+			"body": "<p>We're planning a beta test program for Cacti Coast!</p><p>Beta Timeline:</p><ul><li>Closed Beta: Mid-2025 for selected community members</li><li>Open Beta: Late 2025, closer to release</li></ul><p>How to get Beta Access:</p><ul><li>Discord Members: Beta invitations will be announced in our Discord server first</li><li>Steam Wishlist: Wishlist the game for potential beta key distribution</li><li>Community Participation: Active community members may receive priority access</li></ul><p>What to Expect in Beta:</p><ul><li>Early access to new features and content</li><li>Opportunity to provide feedback that shapes the final game</li><li>Exclusive beta cosmetic rewards</li><li>Direct interaction with the development team</li></ul><p>Join our Discord to be first in line for beta announcements!</p>",
+			"game": "nocturnals-cacti-coast"
+		},
+		{
+			"id": "platforms",
+			"title": "What platforms will it support?",
+			"body": "<p>Cacti Coast will launch on multiple platforms, with a staggered release schedule:</p><h4>Launch Platforms (Late 2025):</h4><ul><li>PC (Steam): Windows, with potential Mac/Linux support</li><li>Steam Deck: Verified compatibility at launch</li></ul><h4>Console Versions (2026):</h4><ul><li>Nintendo Switch: Optimized for handheld and docked play</li><li>PlayStation 5: Enhanced with DualSense haptic feedback</li><li>Xbox Series X/S: Optimized for both console variants</li></ul><h4>Why the Staggered Release?</h4><p>We want to ensure each platform gets the attention it deserves. Starting with PC allows us to:</p><ul><li>Gather community feedback and polish the experience</li><li>Optimize performance for each console's unique capabilities</li><li>Implement platform-specific features (like Nintendo Switch's portability)</li></ul><p>Console players who wishlist on their platform of choice will be notified as soon as those versions are available!</p>",
+			"game": "nocturnals-cacti-coast"
+		},
+		{
+			"id": "online-multiplayer",
+			"title": "Will there be new multiplayer modes?",
+			"body": "<p>Yes! Cacti Coast will feature significantly expanded multiplayer options:</p><h4>Online Multiplayer:</h4><ul><li>Co-op Campaign: Play the full story with up to 6 friends online</li><li>Cross-platform Play: Play with friends regardless of their platform</li><li>Drop-in/Drop-out: Friends can join your game anytime</li><li>Voice Chat Integration: Built-in voice communication</li></ul><h4>New Game Modes:</h4><ul><li>Survival Mode: Work together to survive waves of enemies</li><li>Time Trials: Compete for fastest completion times</li><li>Exploration Challenges: Collaborative puzzle-solving mode</li><li>Custom Games: Create your own game rules and challenges</li></ul><h4>Enhanced Local Play:</h4><ul><li>Up to 6 local players: More friends can join the couch co-op experience</li><li>Better camera system: Improved split-screen and shared camera mechanics</li><li>Mixed online/local: Combine local and online players in the same session</li></ul><p>All multiplayer modes are designed to be accessible to players of different skill levels!</p>",
+			"game": "nocturnals-cacti-coast"
+		}
+	],
+	"policies": [
+		{
+			"id": "privacy-policy",
+			"title": "Privacy Policy",
+			"body": "<p>This Privacy Policy outlines how Cowboy Toad Games LTD (\"we,\" \"us,\" or \"our\") handles your data, how it may be used, and the limited circumstances under which it might be processed when you interact with our games, website, and related services.</p><h4>1. No Active Data Collection</h4><p>We design our games with privacy in mind. None of our games actively collect, track, or transmit any personal information. Specifically:</p><ul><li>We do not collect personal data such as your name, email address, IP address, or payment information.</li><li>We do not use cookies, analytics, advertising identifiers, or tracking technologies within our games.</li><li>We do not transmit gameplay data, preferences, or personal identifiers to our servers or any third party.</li></ul><h4>2. Limited Data Handling</h4><p>While our games themselves do not collect data, some limited usage data may be processed through the third-party services we rely on:</p><ul><li>Cloudflare Analytics: Our website uses <a href=\"https://www.cloudflare.com/privacypolicy/\" target=\"_blank\" rel=\"noopener\">Cloudflare Analytics</a> to monitor traffic and performance. This service uses anonymized data to help improve security and site reliability. We do not use Cloudflare to collect personal information or track users across sites.</li><li>Steam Cloud: If you play our games via Steam, save game data may be stored through Steam Cloud. We do not access or store this data directly. Please refer to the <a href=\"https://store.steampowered.com/privacy_agreement/\" target=\"_blank\" rel=\"noopener\">Steam Privacy Policy</a> for more information.</li></ul><h4>3. Third-Party Platforms</h4><p>Our games may be downloaded and played through third-party platforms, each of which may collect and process data under their own privacy practices. These platforms include:</p><ul><li><a href=\"https://store.steampowered.com/privacy_agreement/\" target=\"_blank\" rel=\"noopener\">Steam (Valve Corporation)</a></li><li><a href=\"https://www.apple.com/legal/privacy/\" target=\"_blank\" rel=\"noopener\">Apple App Store (Apple Inc.)</a></li><li><a href=\"https://policies.google.com/privacy\" target=\"_blank\" rel=\"noopener\">Google Play Store (Google LLC)</a></li></ul><p>We encourage you to review the privacy policies of any platform through which you access our games, as we do not control the data collection practices of these services.</p><h4>4. Children's Privacy</h4><p>Our games are not intended for children under the age of 13, and we do not knowingly collect personal information from children. If you believe that a child has provided us with personal data in violation of this policy, please contact us and we will promptly take steps to remove such information.</p><h4>5. Changes to This Privacy Policy</h4><p>We may update this Privacy Policy from time to time as our products evolve or in response to legal or regulatory changes. All changes will be posted on this page and, where appropriate, we will notify users of material updates.</p><h4>6. Contact Us</h4><p>If you have any questions, concerns, or feedback about this Privacy Policy or our data practices, please contact us at <a href=\"mailto:team@cowboytoad.games\">team@cowboytoad.games</a>.</p>",
+			"date": "2025-07-08"
+		},
+		{
+			"id": "terms-of-use",
+			"title": "Terms of Use",
+			"body": "<p>Welcome to https://cowboytoad.games, operated by Cowboy Toad Games LTD (\"we,\" \"us,\" or \"our\"), a limited company registered in the United Kingdom. By accessing or using this website, you agree to be bound by these Terms of Use. If you do not agree, please do not use our site.</p><h4>1. Use of the Website</h4><p>This website is provided for informational and promotional purposes only. It offers developer news, information about our games, links to third-party storefronts (such as Steam, Google Play, and the Apple App Store), and support resources.</p><p>You are not required to create an account to access any part of our site. We do not host user-submitted content or interactive features on the website.</p><h4>2. Intellectual Property</h4><p>All content, including text, images, artwork, videos, audio, and game assets, is the property of Cowboy Toad Games LTD unless explicitly stated otherwise.</p><p>You may not extract, modify, reproduce, or redistribute assets from our games or website for commercial use or in any way that misrepresents or harms our brand.</p><p>However, we encourage and permit the following:</p><ul><li>Streaming gameplay footage of our games</li><li>Creating fanart</li><li>Using our characters or games in thumbnails and social media posts that promote or discuss our games</li></ul><p>We reserve the right to revoke these permissions if content is deemed misleading, harmful, or inappropriate.</p><h4>3. Discord Server and Community Conduct</h4><p>Our official community discussion takes place on our Discord server. This server is moderated by volunteers, and participation is subject to the following rules:</p><ul><li>Be Respectful: No hate speech, harassment, or personal attacks.</li><li>Keep it Clean: No explicit or offensive content.</li><li>No Spamming: Excessive messaging is not allowed.</li><li>Respect Privacy: Do not share personal information.</li><li>Use Channels Appropriately: Post only relevant content per channel.</li><li>No AI-Generated Art: Fanart channels are for original, human-created artwork only.</li><li>Age Requirements: The Discord server is intended for users aged 16 and older. Users under 16 will be removed. Users under 13 will be permanently banned, in compliance with platform policies and child protection laws.</li></ul><p>Violations may result in removal or bans from the community at the discretion of moderators.</p><h4>4. External Links</h4><p>Our site contains links to third-party websites, such as digital storefronts (Steam, Google Play, Apple App Store), and social platforms (Discord, YouTube). We do not control these sites and are not responsible for their content, privacy policies, or terms. Visiting these sites is at your own risk.</p><h4>5. Age Restrictions</h4><p>Our games are not intended for children under the age of 13, due to mature themes, violence, and strong language. The website itself does not restrict access based on age, but some content may not be suitable for younger audiences.</p><h4>6. Disclaimer</h4><p>This website and its content are provided \"as is,\" without warranty of any kind. We do not guarantee that the site will be error-free or available at all times. We may modify or suspend access to any part of the site without notice.</p><h4>7. Limitation of Liability</h4><p>To the maximum extent permitted by law, Cowboy Toad Games LTD shall not be held liable for any direct, indirect, incidental, or consequential damages arising from your use of the site, its content, or linked services.</p><h4>8. Modifications</h4><p>We reserve the right to update these Terms of Use at any time. Changes will be posted on this page with a new \"Last updated\" date. Continued use of the site after changes are posted implies your acceptance of the revised terms.</p><h4>9. Governing Law</h4><p>These Terms are governed by the laws of England and Wales. Any disputes will be subject to the exclusive jurisdiction of the courts of England and Wales.</p><h4>10. Privacy Policy</h4><p>By using our site, you also agree to our <a href=\"#\" onclick=\"openModal('policy', 'privacy-policy')\">Privacy Policy</a>, which explains how we handle data and user information.</p>",
+			"date": "2025-07-08"
+		}
+	]
 }

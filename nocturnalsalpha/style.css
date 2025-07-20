@@ -1,13 +1,16 @@
-html, body {
+html,
+body {
 	padding: 0;
 	margin: 0;
 	overflow: hidden;
-	
+
 	background: #000000;
 	color: white;
 }
 
-html, body, canvas {
+html,
+body,
+canvas {
 	touch-action: none;
 	touch-action-delay: none;
 }
@@ -65,7 +68,7 @@ html, body, canvas {
 .c3-screen-reader-text {
 	position: absolute;
 	width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(1px, 1px, 1px, 1px);
+	height: 1px;
+	overflow: hidden;
+	clip: rect(1px, 1px, 1px, 1px);
 }
