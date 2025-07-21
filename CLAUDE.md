@@ -22,6 +22,7 @@ The website uses a simple, modern architecture:
 - `main.js` - Core application logic, event handling, and content rendering
 - `styles.css` - Complete CSS styling with CSS custom properties
 - `content.json` - All dynamic content (news articles, FAQ entries, policies)
+- `admin.html` - Content management interface for editing website content
 - `images/` - Static assets including logos, backgrounds, and modal images
 - `nocturnalsalpha/` - Contains a separate game demo/alpha build
 
@@ -45,9 +46,21 @@ The website uses a simple, modern architecture:
 - Each item has `id`, `title`, `body` (HTML), and optional `image`, `date`, `game` fields
 - Game-specific content is filtered based on active game selection
 
+### Admin Interface (`admin.html`)
+- Self-contained content management system for editing website content
+- Built with vanilla JavaScript and Quill.js rich text editor
+- Features tabbed interface for managing news, FAQ, and policy content
+- Includes form validation, local storage backup, and JSON export functionality
+- Uses the same dark theme styling as the main website
+
 ## Development Workflow
 
 This is a static site - no build process is required. Changes can be made directly to the files and tested in live preview.
+
+### Content Management
+- Use `admin.html` for editing website content through a user-friendly interface
+- Content changes are saved to local storage and can be exported as `content.json`
+- Direct editing of `content.json` is also supported for bulk changes
 
 ## Deployment
 

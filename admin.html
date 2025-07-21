@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Editor - Cowboy Toad Games</title>
+    <link rel="icon" href="images/favicon.ico" type="image/ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/quill@2/dist/quill.bubble.css" rel="stylesheet" />
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --bg-tertiary: #2a2a2a;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --accent: #ff6b35;
+            --accent-hover: #e55a2e;
+            --success: #28a745;
+            --danger: #dc3545;
+            --border: #3a3a3a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Jost', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: var(--accent);
+            font-weight: 900;
+        }
+
+        .btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font: inherit;
+            font-size: 14px;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+
+        .btn-secondary:hover {
+            background: #3a3a3a;
+        }
+
+        .btn-success {
+            background: var(--success);
+        }
+
+        .btn-danger {
+            background: var(--danger);
+        }
+
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 30px;
+        }
+
+        .tab {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            padding: 15px 25px;
+            cursor: pointer;
+            font: inherit;
+            font-size: 16px;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .tab.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .content-section {
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .section-header h2 {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .item-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .item {
+            background: var(--bg-tertiary);
+            border-radius: 5px;
+            padding: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .item-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+        }
+
+        .item-meta {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .item-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            font: inherit;
+            font-size: 14px;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        select.form-control {
+            cursor: pointer;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            padding: 30px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h3 {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 24px;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-btn:hover {
+            color: var(--text-primary);
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .status-message {
+            padding: 12px 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .status-success {
+            background: rgba(40, 167, 69, 0.1);
+            color: var(--success);
+            border: 1px solid var(--success);
+        }
+
+        .status-error {
+            background: rgba(220, 53, 69, 0.1);
+            color: var(--danger);
+            border: 1px solid var(--danger);
+        }
+
+        .ql-editor {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            min-height: 200px;
+        }
+
+        .ql-bubble .ql-tooltip {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+        }
+
+        .ql-bubble .ql-tooltip input {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .ql-bubble .ql-toolbar {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 5px;
+        }
+
+        .ql-bubble .ql-toolbar .ql-stroke {
+            stroke: var(--text-secondary);
+        }
+
+        .ql-bubble .ql-toolbar .ql-fill {
+            fill: var(--text-secondary);
+        }
+
+        .ql-bubble .ql-toolbar button:hover .ql-stroke,
+        .ql-bubble .ql-toolbar button.ql-active .ql-stroke {
+            stroke: var(--accent);
+        }
+
+        .ql-bubble .ql-toolbar button:hover .ql-fill,
+        .ql-bubble .ql-toolbar button.ql-active .ql-fill {
+            fill: var(--accent);
+        }
+
+        .form-control.error {
+            border-color: var(--danger);
+            background: rgba(220, 53, 69, 0.1);
+        }
+
+        .field-error {
+            color: var(--danger);
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .field-error::before {
+            content: "⚠ ";
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .tabs {
+                flex-direction: column;
+            }
+
+            .tab {
+                text-align: left;
+            }
+
+            .content-section {
+                padding: 20px;
+            }
+
+            .modal-content {
+                padding: 20px;
+                margin: 20px;
+            }
+
+            .item-header {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .item-actions {
+                align-self: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Content Editor</h1>
+            <div style="display: flex; gap: 15px;">
+                <a href="index.html" class="btn btn-secondary">
+                    <i class="ti ti-arrow-left"></i> Back to Site </a>
+                <button class="btn" onclick="app.exportContent()">
+                    <i class="ti ti-download"></i> Export JSON </button>
+            </div>
+        </div>
+        <div id="statusMessage"></div>
+        <div class="tabs">
+            <button class="tab active" onclick="app.switchTab('news', event)">News</button>
+            <button class="tab" onclick="app.switchTab('faq', event)">FAQ</button>
+            <button class="tab" onclick="app.switchTab('policies', event)">Policies</button>
+        </div>
+        <div id="sections"></div>
+    </div>
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Edit Item</h3>
+                <button class="close-btn" onclick="app.closeModal()">
+                    <i class="ti ti-x"></i>
+                </button>
+            </div>
+            <form id="itemForm">
+                <div id="formFields"></div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="app.closeModal()">Cancel</button>
+                    <button type="submit" class="btn btn-success">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Main Quill library -->
+    <script src="https://cdn.jsdelivr.net/npm/quill@2/dist/quill.js"></script>
+    <script>
+        const app = {
+            content: {},
+            currentSection: 'news',
+            quill: null,
+
+            async init() {
+                await this.loadContent();
+                this.renderSection();
+            },
+
+            async loadContent() {
+                try {
+                    const response = await fetch('content.json');
+                    this.content = await response.json();
+                } catch (error) {
+                    console.error('Error loading content:', error);
+                    this.showStatus('Error loading content', 'error');
+                }
+            },
+
+            switchTab(section, event) {
+                event.preventDefault();
+                document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+                event.target.classList.add('active');
+                this.currentSection = section;
+                this.renderSection();
+            },
+
+            renderSection() {
+                const container = document.getElementById('sections');
+                const items = this.content[this.currentSection] || [];
+
+                container.innerHTML = `
+                    <div class="tab-content active">
+                        <div class="content-section">
+                            <div class="section-header">
+                                <h2>${this.currentSection.charAt(0).toUpperCase() + this.currentSection.slice(1)}</h2>
+                                <button class="btn" onclick="app.openModal('add')">
+                                    <i class="ti ti-plus"></i>
+                                    Add ${this.currentSection.slice(0, -1)}
+                                </button>
+                            </div>
+                            <div class="item-list">
+                                ${items.map(item => this.renderItem(item)).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            },
+
+            renderItem(item) {
+                const date = item.date ? new Date(item.date).toLocaleDateString() : '';
+                const game = item.game ? `Game: ${item.game}` : '';
+                const meta = [date, game].filter(Boolean).join(' • ');
+
+                return `
+                    <div class="item">
+                        <div class="item-header">
+                            <div>
+                                <div class="item-title">${item.title}</div>
+                                ${meta ? `<div class="item-meta">${meta}</div>` : ''}
+                            </div>
+                            <div class="item-actions">
+                                <button class="btn btn-secondary" onclick="app.openModal('edit', '${item.id}')">
+                                    <i class="ti ti-edit"></i>
+                                    Edit
+                                </button>
+                                <button class="btn btn-danger" onclick="app.deleteItem('${item.id}')">
+                                    <i class="ti ti-trash"></i>
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                        <div class="item-content">${item.body}</div>
+                    </div>
+                `;
+            },
+
+            openModal(mode, itemId = null) {
+                const modal = document.getElementById('modal');
+                const title = document.getElementById('modalTitle');
+
+                title.textContent = mode === 'add'
+                    ? `Add ${this.currentSection.slice(0, -1)}`
+                    : `Edit ${this.currentSection.slice(0, -1)}`;
+
+                const item = itemId ? this.content[this.currentSection].find(i => i.id === itemId) : null;
+                this.renderForm(item);
+                modal.classList.add('active');
+
+                setTimeout(() => this.initQuill(item?.body), 100);
+            },
+
+            closeModal() {
+                document.getElementById('modal').classList.remove('active');
+                this.quill = null;
+            },
+
+            renderForm(item = null) {
+                const fields = document.getElementById('formFields');
+                const section = this.currentSection;
+
+                let formHTML = `
+                    <div class="form-group">
+                        <label for="title">Title *</label>
+                        <input type="text" id="title" name="title" class="form-control" value="${item?.title || ''}" required>
+                    </div>
+                `;
+
+                if (section === 'news') {
+                    formHTML += `
+                        <div class="form-group">
+                            <label for="date">Date</label>
+                            <input type="date" id="date" name="date" class="form-control" value="${item?.date || ''}">
+                        </div>
+                        <div class="form-group">
+                            <label for="image">Image URL</label>
+                            <input type="url" id="image" name="image" class="form-control" value="${item?.image || ''}">
+                        </div>
+                    `;
+                }
+
+                if (section === 'faq') {
+                    formHTML += `
+                        <div class="form-group">
+                            <label for="game">Game</label>
+                            <select id="game" name="game" class="form-control">
+                                <option value="">All Games</option>
+                                <option value="nocturnals" ${item?.game === 'nocturnals' ? 'selected' : ''}>Nocturnals</option>
+                                <option value="ncc" ${item?.game === 'ncc' ? 'selected' : ''}>Nocturnals: Cacti Coast</option>
+                            </select>
+                        </div>
+                    `;
+                }
+
+                formHTML += `
+                    <div class="form-group">
+                        <label for="body">Content *</label>
+                        <div id="editor" style="height: 200px;"></div>
+                        <textarea id="body" name="body" style="display: none;" required></textarea>
+                    </div>
+                `;
+
+                fields.innerHTML = formHTML;
+                document.getElementById('itemForm').onsubmit = (e) => this.handleSubmit(e, item?.id);
+            },
+
+            initQuill(content = '') {
+                if (this.quill) return;
+
+                this.quill = new Quill('#editor', {
+                    theme: 'bubble',
+                    placeholder: 'Enter content...',
+                    modules: {
+                        toolbar: [
+                            [{ 'header': [1, 2, 3, false] }],
+                            ['bold', 'italic', 'underline'],
+                            ['link'],
+                            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                            ['clean']
+                        ]
+                    }
+                });
+
+                if (content) this.quill.root.innerHTML = content;
+
+                this.quill.on('text-change', () => {
+                    document.getElementById('body').value = this.quill.root.innerHTML;
+                });
+            },
+
+            handleSubmit(event, itemId = null) {
+                event.preventDefault();
+
+                const formData = new FormData(event.target);
+                const data = Object.fromEntries(formData.entries());
+
+                if (this.quill) data.body = this.quill.root.innerHTML;
+
+                if (!data.title || !data.body) {
+                    this.showStatus('Please fill in all required fields', 'error');
+                    return;
+                }
+
+                itemId ? this.updateItem(itemId, data) : this.addItem(data);
+            },
+
+            addItem(data) {
+                data.id = Date.now().toString();
+                if (!this.content[this.currentSection]) this.content[this.currentSection] = [];
+
+                this.content[this.currentSection].unshift(data);
+                this.saveAndRefresh('added');
+            },
+
+            updateItem(itemId, data) {
+                const items = this.content[this.currentSection];
+                const index = items.findIndex(item => item.id === itemId);
+
+                if (index !== -1) {
+                    items[index] = { ...items[index], ...data };
+                    this.saveAndRefresh('updated');
+                }
+            },
+
+            deleteItem(itemId) {
+                if (confirm('Are you sure you want to delete this item?')) {
+                    this.content[this.currentSection] = this.content[this.currentSection]
+                        .filter(item => item.id !== itemId);
+                    this.saveAndRefresh('deleted');
+                }
+            },
+
+            saveAndRefresh(action) {
+                localStorage.setItem('content', JSON.stringify(this.content));
+                this.closeModal();
+                this.renderSection();
+                this.showStatus(`${this.currentSection.slice(0, -1)} ${action} successfully`, 'success');
+            },
+
+            exportContent() {
+                const dataStr = JSON.stringify(this.content, null, 2);
+                const dataBlob = new Blob([dataStr], { type: 'application/json' });
+                const url = URL.createObjectURL(dataBlob);
+
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = 'content.json';
+                link.click();
+
+                URL.revokeObjectURL(url);
+                this.showStatus('Content exported successfully', 'success');
+            },
+
+            showStatus(message, type) {
+                const statusEl = document.getElementById('statusMessage');
+                statusEl.innerHTML = `<div class="status-message status-${type}">${message}</div>`;
+                setTimeout(() => statusEl.innerHTML = '', 3000);
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => app.init());
+    </script>
+</body>
+
+</html>
