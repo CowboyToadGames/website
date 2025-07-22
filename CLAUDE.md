@@ -11,26 +11,25 @@ This is a static website for Cowboy Toad Games, a game development studio. The s
 The website uses a simple, modern architecture:
 
 - **Static Site**: No build process or package management - pure HTML/CSS/JS
-- **Content Management**: All content (news, FAQ, policies) is stored in `content.json`
+- **Content Management**: Content is managed through Contentful headless CMS and fetched via their Content Delivery API
 - **Modal System**: Uses native HTML `<dialog>` elements for content modals
 - **Hash Routing**: Simple hash-based routing for sections and modals
 - **Responsive Design**: Mobile-first CSS with CSS Grid and Flexbox
 
 ## Key Files
 
-- `index.html` - Main HTML structure with semantic sections
-- `main.js` - Core application logic, event handling, and content rendering
+- `index.html` - Main HTML structure with semantic sections, includes Contentful CDN script
+- `main.js` - Core application logic, event handling, content rendering, and Contentful API integration
 - `styles.css` - Complete CSS styling with CSS custom properties
-- `content.json` - All dynamic content (news articles, FAQ entries, policies)
-- `admin.html` - Content management interface for editing website content
 - `images/` - Static assets including logos, backgrounds, and modal images
 - `nocturnalsalpha/` - Contains a separate game demo/alpha build
 
 ## Code Structure
 
 ### JavaScript (`main.js`)
+- Contentful client initialization and API integration
+- Data transformation layer to convert Contentful entries to website format
 - Single `app` object with methods for initialization, event handling, and rendering
-- Content is fetched from `content.json` on page load
 - Modal system handles both hash-based and click-based navigation
 - Search functionality for FAQ with debounced input
 - Game switching for context-sensitive FAQ display
@@ -41,26 +40,27 @@ The website uses a simple, modern architecture:
 - Utility classes for common patterns
 - Modal styling uses modern CSS features like `::backdrop`
 
-### Content (`content.json`)
-- Structured data for news articles, FAQ entries, and legal policies
-- Each item has `id`, `title`, `body` (HTML), and optional `image`, `date`, `game` fields
+### Content Management (Contentful CMS)
+- Content is managed through Contentful's web interface
+- Three content types: News Article, FAQ Entry, and Policy
+- Each content type includes relevant fields (title, body, images, dates, etc.)
 - Game-specific content is filtered based on active game selection
-
-### Admin Interface (`admin.html`)
-- Self-contained content management system for editing website content
-- Built with vanilla JavaScript and Quill.js rich text editor
-- Features tabbed interface for managing news, FAQ, and policy content
-- Includes form validation, local storage backup, and JSON export functionality
-- Uses the same dark theme styling as the main website
+- Rich text editing with asset management built into Contentful
 
 ## Development Workflow
 
 This is a static site - no build process is required. Changes can be made directly to the files and tested in live preview.
 
 ### Content Management
-- Use `admin.html` for editing website content through a user-friendly interface
-- Content changes are saved to local storage and can be exported as `content.json`
-- Direct editing of `content.json` is also supported for bulk changes
+- Content is managed through Contentful's web interface at [contentful.com](https://contentful.com)
+- Create and edit news articles, FAQ entries, and policies using Contentful's rich text editor
+- Images and assets are uploaded and managed within Contentful
+- Content changes are published immediately and appear on the website after cache refresh
+
+### Contentful Setup
+- Space ID and Access Token are configured in `main.js` at the top of the file
+- Three content types must be created in Contentful: `newsArticle`, `faqEntry`, and `policy`
+- Each content type should have the fields specified in the implementation plan
 
 ## Deployment
 
