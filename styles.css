@@ -236,12 +236,57 @@ body.no-scroll .header {
 	padding: 80px calc(var(--spacing) * 2) calc(var(--spacing) * 2);
 	background: linear-gradient(rgba(26, 26, 26, 0.6), rgba(26, 26, 26, 0.6)),
 		url("https://images.ctfassets.net/fditamyo7azd/1LYgpcEjbpHNeSbg0rReso/c1f6851d64e83517d2b276228e28a064/herobg.svg") center/cover;
+	position: relative;
+	overflow: hidden;
+}
+
+.hero::before,
+.hero::after {
+	content: "";
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 150%;
+	height: 100%;
+	background: url("images/fog.png") no-repeat bottom;
+	background-size: 100% auto;
+	animation: fog-scroll 80s linear infinite;
+	pointer-events: none;
+	z-index: 1;
+}
+
+.hero::after {
+	animation-delay: -40s;
+}
+
+@keyframes fog-scroll {
+	0% {
+		transform: translateX(-125%);
+		opacity: 0;
+	}
+	10% {
+		opacity: 0.7;
+	}
+	90% {
+		opacity: 0.7;
+	}
+	100% {
+		transform: translateX(25%);
+		opacity: 0;
+	}
 }
 
 .hero-logo {
 	width: 100%;
 	max-width: min(600px, 90vw);
 	margin-bottom: calc(var(--spacing) * 3);
+	position: relative;
+	z-index: 2;
+}
+
+.hero-actions {
+	position: relative;
+	z-index: 2;
 }
 
 /* =================================================================
