@@ -163,9 +163,7 @@ body.no-scroll .header {
 	width: min(256px, 40vw);
 	height: 56px;
 	min-width: 200px;
-}
 
-.toggle-btn {
 	&:hover {
 		background: var(--light-primary);
 		box-shadow: 0 0 16px var(--light-shadow);
@@ -219,9 +217,7 @@ body.no-scroll .header {
 	text-decoration: none;
 	padding: calc(var(--spacing) * 0.5) var(--spacing);
 	transition: color 0.2s ease;
-}
 
-.nav-link {
 	&:hover {
 		color: var(--accent);
 	}
@@ -239,7 +235,7 @@ body.no-scroll .header {
 	align-items: center;
 	padding: 80px calc(var(--spacing) * 2) calc(var(--spacing) * 2);
 	background: linear-gradient(rgba(26, 26, 26, 0.6), rgba(26, 26, 26, 0.6)),
-		url("images/herobg.svg") center/cover;
+		url("https://images.ctfassets.net/fditamyo7azd/1LYgpcEjbpHNeSbg0rReso/c1f6851d64e83517d2b276228e28a064/herobg.svg") center/cover;
 }
 
 .hero-logo {
@@ -312,11 +308,9 @@ body.no-scroll .header {
 	transition: transform 0.2s ease;
 	height: 300px;
 	background: center/cover;
-}
 
-.news-card {
 	&:hover {
-		transform: scale(1.1);
+		transform: scale(1.025);
 	}
 
 	&::before {
@@ -335,9 +329,7 @@ body.no-scroll .header {
 	padding: calc(var(--spacing) * 2);
 	color: var(--light-primary);
 	z-index: 1;
-}
 
-.news-content {
 	h3 {
 		font-size: clamp(1.2rem, 4vw, 1.5rem);
 		margin-bottom: calc(var(--spacing) * 0.5);
@@ -404,11 +396,9 @@ body.no-scroll .header {
 	border-radius: var(--border-radius);
 	transition: var(--transition);
 	cursor: pointer;
-}
 
-.faq-item {
 	&:hover {
-		transform: scale(1.1);
+		transform: scale(1.025);
 	}
 
 	h4 {
@@ -461,20 +451,9 @@ body.no-scroll .header {
 	}
 }
 
-.support-contact {
-	margin-top: calc(var(--spacing) * 2);
-
-	a {
-		color: var(--accent);
-		text-decoration: none;
-
-		&:hover {
-			text-decoration: underline;
-		}
-	}
-}
-
+.support-contact,
 .footer {
+
 	a {
 		color: var(--accent);
 		text-decoration: none;
@@ -562,9 +541,7 @@ body.no-scroll .header {
 	transition: var(--transition);
 	outline: none;
 	z-index: 1000;
-}
 
-.modal-close {
 	&:hover {
 		color: var(--accent);
 		text-shadow: 0 0 8px var(--accent-shadow);

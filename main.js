@@ -65,31 +65,24 @@ const resolveAsset = (assetLink, includes) => {
 	return asset?.fields?.file?.url ? `https:${asset.fields.file.url}` : null;
 };
 
-// Contentful data transformation functions
-const contentfulTransform = {
-	transformNewsEntry: (entry, includes) => ({
+// Generic Contentful data transformation function
+const transformEntry = (entry, includes, fields = []) => {
+	const base = {
 		id: entry.fields.slug || entry.sys.id,
 		title: entry.fields.title,
-		summary: entry.fields.summary,
-		body: richTextToHtml(entry.fields.body),
-		image: resolveAsset(entry.fields.image, includes),
-		game: entry.fields.game,
-		date: entry.fields.date?.split('T')[0] || entry.sys.createdAt?.split('T')[0],
-	}),
+		body: richTextToHtml(entry.fields.body)
+	};
 
-	transformFaqEntry: (entry, includes) => ({
-		id: entry.fields.slug || entry.sys.id,
-		title: entry.fields.title,
-		body: richTextToHtml(entry.fields.body),
-		game: entry.fields.game,
-	}),
+	fields.forEach(field => {
+		switch (field) {
+			case 'summary': base.summary = entry.fields.summary; break;
+			case 'image': base.image = resolveAsset(entry.fields.image, includes); break;
+			case 'game': base.game = entry.fields.game; break;
+			case 'date': base.date = entry.fields.date?.split('T')[0] || entry.sys.createdAt?.split('T')[0]; break;
+		}
+	});
 
-	transformPolicyEntry: (entry, includes) => ({
-		id: entry.fields.slug || entry.sys.id,
-		title: entry.fields.title,
-		body: richTextToHtml(entry.fields.body),
-		date: entry.fields.date?.split('T')[0] || entry.sys.createdAt?.split('T')[0],
-	}),
+	return base;
 };
 
 // Utility functions
@@ -106,19 +99,36 @@ const utils = {
 		};
 	},
 
-	querySelector: (selector) => {
-		try {
-			return document.querySelector(selector);
-		} catch (e) {
-			console.warn(`Invalid selector: ${selector}`);
-			return null;
-		}
-	},
-
 	sanitizeHTML: (str) => {
 		const div = document.createElement("div");
 		div.textContent = str;
 		return div.innerHTML;
+	},
+
+	scrollToSection: (sectionId) => {
+		const section = document.getElementById(sectionId);
+		if (section) {
+			const headerHeight = document.querySelector('.header').offsetHeight;
+			const targetPosition = section.offsetTop - headerHeight;
+			window.scrollTo({
+				top: targetPosition,
+				behavior: 'smooth'
+			});
+			return true;
+		}
+		return false;
+	},
+
+	toggleClass: (element, className, condition = null) => {
+		if (element) {
+			if (condition === null) {
+				element.classList.toggle(className);
+			} else if (condition) {
+				element.classList.add(className);
+			} else {
+				element.classList.remove(className);
+			}
+		}
 	},
 
 	formatDate: (dateStr) => {
@@ -171,9 +181,9 @@ const contentManager = {
 
 			// Transform Contentful entries to match existing data structure
 			contentManager.content = {
-				news: newsEntries.items.map(entry => contentfulTransform.transformNewsEntry(entry, newsEntries.includes)),
-				faq: faqEntries.items.map(entry => contentfulTransform.transformFaqEntry(entry, faqEntries.includes)),
-				policies: policyEntries.items.map(entry => contentfulTransform.transformPolicyEntry(entry, policyEntries.includes)),
+				news: newsEntries.items.map(entry => transformEntry(entry, newsEntries.includes, ['summary', 'image', 'game', 'date'])),
+				faq: faqEntries.items.map(entry => transformEntry(entry, faqEntries.includes, ['game'])),
+				policies: policyEntries.items.map(entry => transformEntry(entry, policyEntries.includes, ['date'])),
 			};
 
 			contentManager.isLoaded = true;
@@ -234,7 +244,7 @@ const modal = {
 		const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
 		document.documentElement.style.setProperty('--scrollbar-width', `${scrollbarWidth}px`);
 
-		document.body.classList.add("no-scroll");
+		utils.toggleClass(document.body, "no-scroll", true);
 		dialog.showModal();
 
 
@@ -245,7 +255,7 @@ const modal = {
 	close: () => {
 		const dialog = document.getElementById("modal");
 		if (dialog?.open) {
-			document.body.classList.remove("no-scroll");
+			utils.toggleClass(document.body, "no-scroll", false);
 			document.documentElement.style.removeProperty('--scrollbar-width');
 			dialog.close();
 
@@ -254,19 +264,12 @@ const modal = {
 		}
 	},
 
-	formatContent: (item) => {
-		let html = "";
-		if (item.date)
-			html += `<p class="modal-date">${utils.formatDate(item.date)}</p>`;
-		if (item.image)
-			html += `<img src="${item.image}" alt="${utils.sanitizeHTML(
-				item.title
-			)}" class="modal-image" loading="lazy">`;
-		if (item.summary && item.summary !== item.title)
-			html += `<p class="modal-summary">${item.summary}</p>`;
-		html += item.body;
-		return html;
-	},
+	formatContent: (item) => `
+		${item.date ? `<p class="modal-date">${utils.formatDate(item.date)}</p>` : ''}
+		${item.image ? `<img src="${item.image}" alt="${utils.sanitizeHTML(item.title)}" class="modal-image" loading="lazy">` : ''}
+		${item.summary && item.summary !== item.title ? `<p class="modal-summary">${item.summary}</p>` : ''}
+		${item.body}
+	`,
 };
 
 // Search functionality
@@ -278,7 +281,7 @@ const search = {
 	init: (renderCallback) => {
 		search.renderCallback = renderCallback;
 		search.debouncedSearch = utils.debounce(search.performSearch, 300);
-		search.searchBox = utils.querySelector(".search-box");
+		search.searchBox = document.querySelector(".search-box");
 		if (search.searchBox) {
 			search.searchBox.addEventListener("input", (e) => {
 				search.debouncedSearch(e.target.value);
@@ -352,10 +355,7 @@ const initEvents = (app) => {
 		const hash = location.hash.slice(1);
 		if (!hash) return;
 
-		const section = document.getElementById(hash);
-		if (section) {
-			section.scrollIntoView({ behavior: "smooth" });
-		} else {
+		if (!utils.scrollToSection(hash)) {
 			modal.open(hash);
 		}
 	});
@@ -381,10 +381,7 @@ const app = {
 		const hash = location.hash.slice(1);
 		if (!hash) return;
 
-		const section = document.getElementById(hash);
-		if (section) {
-			section.scrollIntoView({ behavior: "smooth" });
-		} else {
+		if (!utils.scrollToSection(hash)) {
 			modal.open(hash);
 		}
 	},
@@ -393,11 +390,11 @@ const app = {
 		if (!game) return;
 
 		try {
-			const currentActive = utils.querySelector(".toggle-btn.active");
-			const newActive = utils.querySelector(`[data-game="${game}"]`);
+			const currentActive = document.querySelector(".toggle-btn.active");
+			const newActive = document.querySelector(`[data-game="${game}"]`);
 
-			if (currentActive) currentActive.classList.remove("active");
-			if (newActive) newActive.classList.add("active");
+			utils.toggleClass(currentActive, "active", false);
+			utils.toggleClass(newActive, "active", true);
 
 			app.activeGame = game;
 			search.clear();
@@ -413,7 +410,7 @@ const app = {
 	},
 
 	renderNews: () => {
-		const grid = utils.querySelector(".news-grid");
+		const grid = document.querySelector(".news-grid");
 		if (!grid || !contentManager.content.news) return;
 
 		try {
@@ -482,5 +479,4 @@ const app = {
 	},
 };
 
-// Initialize app when DOM is ready
 document.addEventListener("DOMContentLoaded", app.init);
