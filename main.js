@@ -220,7 +220,7 @@ const contentManager = {
 				);
 			});
 
-			return searchTerm ? items : items.slice(0, 6);
+			return items;
 		} catch (e) {
 			console.warn("Error filtering FAQ:", e);
 			return [];
