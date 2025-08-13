@@ -1,7 +1,7 @@
 // Contentful configuration
 const CONTENTFUL_CONFIG = {
-	spaceId: 'fditamyo7azd', // Replace with your Contentful space ID
-	accessToken: '3A0cSl-XxSHdHVEDCCLxoQBiTiMAvZgq0X15WY8vjuw', // Replace with your Contentful access token
+	spaceId: 'fditamyo7azd',
+	accessToken: '3A0cSl-XxSHdHVEDCCLxoQBiTiMAvZgq0X15WY8vjuw',
 };
 
 // Initialize Contentful client
@@ -239,14 +239,9 @@ const modal = {
 		document.getElementById("modal-title").textContent = item.title;
 		document.getElementById("modal-body").innerHTML = modal.formatContent(item);
 
-
-		// Calculate scrollbar width and prevent layout shift
-		const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-		document.documentElement.style.setProperty('--scrollbar-width', `${scrollbarWidth}px`);
-
+		modal.setupScrollFade(dialog);
 		utils.toggleClass(document.body, "no-scroll", true);
 		dialog.showModal();
-
 
 		history.pushState(null, null, `#${contentId}`);
 		return true;
@@ -256,12 +251,27 @@ const modal = {
 		const dialog = document.getElementById("modal");
 		if (dialog?.open) {
 			utils.toggleClass(document.body, "no-scroll", false);
-			document.documentElement.style.removeProperty('--scrollbar-width');
 			dialog.close();
-
-
 			history.pushState(null, null, location.pathname);
 		}
+	},
+
+	setupScrollFade: (dialog) => {
+		const modalContent = dialog.querySelector('.modal-content');
+		if (!modalContent) return;
+
+		const updateFade = () => {
+			const isAtBottom = modalContent.scrollHeight - modalContent.scrollTop <= modalContent.clientHeight + 1;
+			const isScrolledFromTop = modalContent.scrollTop > 1;
+
+			dialog.toggleAttribute('data-at-bottom', isAtBottom);
+			dialog.toggleAttribute('data-scrolled-from-top', isScrolledFromTop);
+		};
+
+		modalContent.removeEventListener('scroll', updateFade);
+		modalContent.addEventListener('scroll', updateFade);
+
+		requestAnimationFrame(updateFade);
 	},
 
 	formatContent: (item) => `

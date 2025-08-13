@@ -25,6 +25,9 @@
 
 html {
 	scroll-behavior: smooth;
+	scrollbar-gutter: stable;
+	scrollbar-width: thin;
+	scrollbar-color: var(--dark-tertiary) transparent;
 }
 
 body {
@@ -40,7 +43,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-	background: var(--dark-tertiary);
+	background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -53,13 +56,12 @@ body {
 	background: var(--light-primary);
 }
 
-body.no-scroll {
-	overflow: hidden;
-	padding-right: var(--scrollbar-width, 0);
+html {
+	scrollbar-gutter: stable;
 }
 
-body.no-scroll .header {
-	padding-right: calc(calc(var(--spacing) * 2) + var(--scrollbar-width, 0));
+body.no-scroll {
+	overflow: hidden;
 }
 
 /* =================================================================
@@ -528,14 +530,15 @@ body.no-scroll .header {
 
 #modal {
 	border: none;
-	padding: calc(var(--spacing) * 2);
+	outline: none;
+	padding: 0;
 	background: var(--dark-secondary);
 	color: var(--light-primary);
 	border-radius: var(--border-radius);
 	max-width: 700px;
 	width: 90vw;
 	max-height: 90vh;
-	overflow-y: auto;
+	overflow: hidden;
 	box-shadow: var(--shadow-hover);
 	transition: opacity 0.25s ease, transform 0.25s ease,
 		overlay 0.25s ease allow-discrete, display 0.25s ease allow-discrete;
@@ -544,6 +547,11 @@ body.no-scroll .header {
 	left: 50%;
 	transform: translate(-50%, -50%);
 	margin: 0;
+}
+
+.modal-content {
+	outline: none;
+	border: none;
 }
 
 #modal {
@@ -635,6 +643,47 @@ body.no-scroll .header {
 
 .modal-content {
 	position: relative;
+	padding: calc(var(--spacing) * 2);
+	max-height: 90vh;
+	overflow-y: auto;
+}
+
+#modal::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 6rem;
+	background: linear-gradient(to top, transparent, var(--dark-secondary));
+	pointer-events: none;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+	border-radius: var(--border-radius) var(--border-radius) 0 0;
+	z-index: 10;
+}
+
+#modal[data-scrolled-from-top]::before {
+	opacity: 1;
+}
+
+#modal::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 6rem;
+	background: linear-gradient(to bottom, transparent, var(--dark-secondary));
+	pointer-events: none;
+	opacity: 1;
+	transition: opacity 0.3s ease;
+	border-radius: 0 0 var(--border-radius) var(--border-radius);
+	z-index: 10;
+}
+
+#modal[data-at-bottom]::after {
+	opacity: 0;
 }
 
 /* =================================================================
