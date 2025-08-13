@@ -243,6 +243,12 @@ const modal = {
 		utils.toggleClass(document.body, "no-scroll", true);
 		dialog.showModal();
 
+		// Scroll modal content to top
+		const modalContent = dialog.querySelector('.modal-content');
+		if (modalContent) {
+			modalContent.scrollTop = 0;
+		}
+
 		history.pushState(null, null, `#${contentId}`);
 		return true;
 	},
