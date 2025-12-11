@@ -252,7 +252,7 @@ body.no-scroll {
   left: 0;
   width: 150%;
   height: 100%;
-  background: url("images/fog.png") no-repeat bottom;
+  background: url("images/fog.webp") no-repeat bottom;
   background-size: 100% auto;
   animation: fog-scroll 80s linear infinite;
   pointer-events: none;
