@@ -29,16 +29,16 @@
   </url>
 
   <url>
-    <loc>https://cowboytoad.games/#policy/privacy-policy</loc>
+    <loc>https://cowboytoad.games/#privacy-policy</loc>
     <lastmod>2025-07-08</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.1</priority>
   </url>
 
   <url>
-    <loc>https://cowboytoad.games/#policy/terms-of-use</loc>
+    <loc>https://cowboytoad.games/#terms-of-use</loc>
     <lastmod>2025-07-08</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.1</priority>
   </url>
 </urlset>
